@@ -30,7 +30,7 @@ public class Bat : Entity
         }
         else
         {
-            RigidCompo.AddForce(Vector2.down * _flyPower * 2, ForceMode2D.Impulse);
+            RigidCompo.AddForce(Vector2.down * _flyPower * 1.2f, ForceMode2D.Impulse);
         }
     }
 

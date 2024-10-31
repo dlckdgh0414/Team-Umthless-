@@ -7,6 +7,8 @@ public class Lizard : Entity
 {
     [Header("LizardSetting")] 
     [SerializeField] private float lizardToWallJump;
+
+    [SerializeField] private AnimTypeSO _moveType;
     
     private WallCheck _wallCheck;
     private bool _isWallRen;
@@ -43,26 +45,59 @@ public class Lizard : Entity
                 _isWallRen = true;
                 RigidCompo.gravityScale = 0;
             }
-            else if (!_wallCheck.IsWallCheck())
-            {
-                int wallDir = _wallCheck.isRightWall ? 90 : -90;
-                RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
-            }
         }
         else if (_isWallRen)
         {
-            RigidCompo.gravityScale = 1;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            _canMove = true;
-            _isWallRen = false;
+            OffWallRun();
         }
+    }
+
+    protected override void Move(Vector2 dir)
+    {
+        base.Move(dir);
+        if (dir.x != 0)
+        {
+            AnimCompo.SetParam(_moveType,true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType,false);
+        }
+    }
+
+    private void OffWallRun()
+    {
+        RigidCompo.gravityScale = 1;
+        RigidCompo.AddForce(Vector2.up * lizardToWallJump, ForceMode2D.Impulse);
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        _canMove = true;
+        _isWallRen = false;
     }
 
     private void WallMove(Vector2 dir)
     {
         RigidCompo.velocity = new Vector2(RigidCompo.velocity.x, dir.y * _moveData.moveSpeed);
+        if (dir.y != 0)
+        {
+            AnimCompo.SetParam(_moveType,true);
+        }
+        else if (dir.y == 0)
+        {
+            AnimCompo.SetParam(_moveType,false);
+        }
     }
-    
+
+    private void Update()
+    {
+        if (_isWallRen)
+        {
+            if (!_wallCheck.IsWallRuningCheck())
+            {
+                OffWallRun();
+            }
+        }
+    }
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

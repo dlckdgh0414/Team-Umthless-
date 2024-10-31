@@ -22,4 +22,10 @@ public class EffectFeedback : Feedback
     {
        
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, _particleSize);
+    }
 }

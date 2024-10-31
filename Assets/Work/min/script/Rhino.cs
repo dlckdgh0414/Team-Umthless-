@@ -18,6 +18,12 @@ public class Rhino : Entity
         _player.InputComp.OnJumpEvent += Jump;
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+    }
+
     public override void HackingExit()
     {
         _player = null;

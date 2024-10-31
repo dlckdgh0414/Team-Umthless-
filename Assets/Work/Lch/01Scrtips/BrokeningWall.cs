@@ -33,8 +33,7 @@ public class BrokeningWall : MonoBehaviour
 
     public void BrokeningObj()
     {
-       _sprite.material.DOFade(0, 1.5f)
-            .OnComplete(() => Destroy(gameObject));
+        _sprite.DOFade(0, 1.5f);
         
         OnGrithchEvent?.Invoke();
     }

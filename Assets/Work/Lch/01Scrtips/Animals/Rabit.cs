@@ -7,6 +7,7 @@ public class Rabit : Entity
 {
     [SerializeField] private AnimTypeSO _moveType;
     [SerializeField] private AnimTypeSO _jumpType;
+    [SerializeField] private AnimTypeSO _failType;
     private float jumpPower;
     private bool IsCharging;
 
@@ -24,9 +25,15 @@ public class Rabit : Entity
 
     private void Update()
     {
-        if (CheckCompo.IsGround)
+        if (RigidCompo.velocity.y < 0)
         {
             AnimCompo.SetParam(_jumpType, false);
+            AnimCompo.SetParam(_failType, true);
+        }
+
+        if (CheckCompo.IsGround)
+        {
+            AnimCompo.SetParam(_failType, false);
         }
 
         if (IsCharging)
@@ -74,7 +81,7 @@ public class Rabit : Entity
     private void Jump(bool isCharging)
     {
         IsCharging = isCharging;
-        if (!isCharging)
+        if (!isCharging && CheckCompo.IsGround)
         {
             AnimCompo.SetParam(_jumpType, true);
             RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);

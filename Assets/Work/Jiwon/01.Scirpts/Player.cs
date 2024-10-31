@@ -1,17 +1,16 @@
-using System;
-using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [field : SerializeField] public InputReader InputComp { get; private set; }
+    [field: SerializeField] public InputReader InputComp { get; private set; }
     [SerializeField] private Entity initEntity;
     public CinemachineVirtualCamera VirtualCamera { get; private set; }
 
     public bool isSkill = false;
-    
+
     [Header("HackingSetting")]
     public float maxHackingCharge;
     public UnityEvent OnHackingEvent;
@@ -53,13 +52,13 @@ public class Player : MonoBehaviour
     {
         InputComp.OnHackingChargingEvent -= HandheldHacking;
     }
-    
+
     private void HandheldHacking(bool isHacking)
     {
         if (isHacking)
         {
             RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward);
-            
+
             if (!hit) return;
 
             if (hit.collider.TryGetComponent(out Entity entity))
@@ -75,7 +74,7 @@ public class Player : MonoBehaviour
         else if (!isHacking && _hackingCharging.Value < maxHackingCharge)
         {
             _isHacking = false;
-            
+
             _hackingCharging.Value = 0;
             _nextEntity = null;
             hackingUI.HackingCansle();
@@ -97,7 +96,7 @@ public class Player : MonoBehaviour
             if (!hit)
             {
                 _isHacking = false;
-            
+
                 _hackingCharging.Value = 0;
                 _nextEntity = null;
                 hackingUI.HackingCansle();
@@ -107,14 +106,14 @@ public class Player : MonoBehaviour
             if (!hit.collider.TryGetComponent(out Entity entity))
             {
                 _isHacking = false;
-            
+
                 _hackingCharging.Value = 0;
                 hackingUI.HackingCansle();
                 _nextEntity = null;
             }
         }
     }
-    
+
     private void HandleHackingChanged(float prev, float next)
     {
         if (next > maxHackingCharge)
@@ -127,18 +126,18 @@ public class Player : MonoBehaviour
     {
         if (_nextEntity == null) return;
         if (_currentEntity == _nextEntity) return;
-        
+
         hackingUI.HackingCansle();
-        
+
         _hackingCharging.Value = 0;
         _isHacking = false;
-        
+
         _currentEntity.HackingExit();
         _currentEntity = _nextEntity;
         _currentEntity.HackingEnter(this);
         DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, _currentEntity._moveData.camFov, 1f);
         _nextEntity = null;
-        
+
         VirtualCamera.Follow = _currentEntity.transform;
         OnHackingEvent?.Invoke();
     }

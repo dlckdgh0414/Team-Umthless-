@@ -1,5 +1,5 @@
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 
 public class RoundCameraPos : CinemachineExtension
 {

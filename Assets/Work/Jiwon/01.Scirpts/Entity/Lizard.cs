@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Lizard : Entity
 {
-    [Header("LizardSetting")] 
+    [Header("LizardSetting")]
     [SerializeField] private float lizardToWallJump;
 
     [SerializeField] private AnimTypeSO _moveType;
-    
+
     private WallCheck _wallCheck;
     private bool _isWallRen;
 
     private float _wallMoveDir;
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,7 +27,7 @@ public class Lizard : Entity
         _player.InputComp.OnJumpEvent += Jump;
         _canMove = true;
     }
-    
+
     private void HandleWallRunEvent()
     {
         if (!_isWallRen)
@@ -38,8 +35,8 @@ public class Lizard : Entity
             if (_wallCheck.IsWallCheck())
             {
                 int wallDir = _wallCheck.isRightWall ? 90 : -90;
-                
-                RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
+
+                RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir), 1) * lizardToWallJump, ForceMode2D.Impulse);
                 transform.eulerAngles = new Vector3(0, 0, wallDir);
                 _canMove = false;
                 _isWallRen = true;
@@ -57,11 +54,11 @@ public class Lizard : Entity
         base.Move(dir);
         if (dir.x != 0)
         {
-            AnimCompo.SetParam(_moveType,true);
+            AnimCompo.SetParam(_moveType, true);
         }
         else
         {
-            AnimCompo.SetParam(_moveType,false);
+            AnimCompo.SetParam(_moveType, false);
         }
     }
 
@@ -79,11 +76,11 @@ public class Lizard : Entity
         RigidCompo.velocity = new Vector2(RigidCompo.velocity.x, dir.y * _moveData.moveSpeed);
         if (dir.y != 0)
         {
-            AnimCompo.SetParam(_moveType,true);
+            AnimCompo.SetParam(_moveType, true);
         }
         else if (dir.y == 0)
         {
-            AnimCompo.SetParam(_moveType,false);
+            AnimCompo.SetParam(_moveType, false);
         }
     }
 

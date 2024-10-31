@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
-	private RespawnPoint _currentPoint;
+    private RespawnPoint _currentPoint;
 
     [SerializeField] private List<RespawnPoint> respawnPoint;
 
     private void Awake()
     {
-        foreach(Transform item in transform)
+        foreach (Transform item in transform)
         {
             respawnPoint.Add(item.GetComponent<RespawnPoint>());
         }

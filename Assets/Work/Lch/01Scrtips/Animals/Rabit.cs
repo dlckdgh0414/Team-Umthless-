@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rabit : Entity
@@ -36,7 +34,7 @@ public class Rabit : Entity
             AnimCompo.SetParam(_failType, false);
         }
 
-        
+
 
         if (RigidCompo.velocity.x != 0)
         {
@@ -51,7 +49,7 @@ public class Rabit : Entity
     protected override void Move(Vector2 dir)
     {
         base.Move(dir);
-        if(dir.x != 0)
+        if (dir.x != 0)
         {
             AnimCompo.SetParam(_moveType, true);
         }
@@ -65,7 +63,7 @@ public class Rabit : Entity
     {
         _player = null;
         _player.InputComp.OnJumpChargingEvent -= Jump;
-        
+
         _canMove = false;
     }
 
@@ -93,11 +91,11 @@ public class Rabit : Entity
 
     private void ChargingJump()
     {
-          StartCoroutine(ChargingCoroutine());
-          if (jumpPower > 10)
-          {
-              jumpPower = 10;
-          }
+        StartCoroutine(ChargingCoroutine());
+        if (jumpPower > 10)
+        {
+            jumpPower = 10;
+        }
     }
 
     private IEnumerator ChargingCoroutine()

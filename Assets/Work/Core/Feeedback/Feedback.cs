@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Feedback : MonoBehaviour
@@ -8,7 +6,7 @@ public abstract class Feedback : MonoBehaviour
 
     public virtual void StopFeedback()
     {
-        
+
     }
 
     private void OnDisable()

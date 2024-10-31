@@ -20,6 +20,11 @@ public class Bat : Entity
         _canMove = true;
     }
 
+    private void CheckInvisibleWall()
+    {
+
+    }
+
     private void Fly(bool isFly)
     {
         RigidCompo.velocity = Vector2.zero;

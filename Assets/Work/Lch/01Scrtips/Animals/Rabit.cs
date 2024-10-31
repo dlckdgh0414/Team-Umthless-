@@ -6,6 +6,7 @@ using UnityEngine;
 public class Rabit : Entity
 {
     [SerializeField] private AnimTypeSO _moveType;
+    [SerializeField] private AnimTypeSO _jumpType;
     private float jumpPower;
     private bool IsCharging;
 
@@ -54,6 +55,7 @@ public class Rabit : Entity
         IsCharging = isCharging;
         if (!isCharging)
         {
+            AnimCompo.SetParam(_jumpType, true);
             RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             jumpPower = _moveData.jumpPower;
         }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee09dc25356a394597f7b517d9c6f30, type: 3}
   m_Name: RabitJump
   m_EditorClassIdentifier: 
-  animType: 2
+  animType: 4
   animals: 1
-  hashValue: -148578448
+  hashValue: -1079382498

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dad73c3d05b7d4ea61db0fc27df2cc, type: 3}
   m_Name: Monkey
   m_EditorClassIdentifier: 
+  IconSprite: {fileID: 0}
   moveSpeed: 8
   jumpPower: 2
+  camFov: 7

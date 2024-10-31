@@ -15,4 +15,4 @@ MonoBehaviour:
   IconSprite: {fileID: 0}
   moveSpeed: 5
   jumpPower: 2
-  camFov: 15
+  camFov: 7

@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCheckSize: {x: 0.1, y: 0.3}
-  wallRuningCheckSize: {x: 1, y: 0.2}
+  wallRuningCheckSize: {x: 1.5, y: 0.2}
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 896
   wallRuningPoint: {fileID: 2761096841802047550}
   isRightWall: 0
 --- !u!1 &5342826169972734391

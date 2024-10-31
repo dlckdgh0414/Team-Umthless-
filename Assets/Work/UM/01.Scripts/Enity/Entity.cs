@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 {
     protected Dictionary<Type, IEntityComponent> _components;
 
@@ -35,5 +35,14 @@ public abstract class Entity : MonoBehaviour
     protected virtual void Jump()
     {
         RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
+    }
+
+    public void HackingEnter()
+    {
+    }
+
+    public void HackingExit()
+    {
+
     }
 }

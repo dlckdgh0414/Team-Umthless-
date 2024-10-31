@@ -230,4 +230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canMove: 0
   _moveData: {fileID: 11400000, guid: 7572d4afac2d8b54183a9aebb1f12f0e, type: 2}
-  _flyPower: 2
+  _flyPower: 7
+  _radius: 5
+  _whatIsInvisible:
+    serializedVersion: 2
+    m_Bits: 512

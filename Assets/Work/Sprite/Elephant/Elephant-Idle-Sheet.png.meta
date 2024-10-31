@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9cb7e9decb5ffe2449d5a23afd778bba
+guid: 7ce591d5adba52946b13bea13a0605a1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monkey-OnhandMove-Sheet_0
+      name: Elephant-Idle-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe2e30bc08d26d14e912398f325b59c5
-      internalID: -1366212698
+      spriteID: 9cad5640e6381de4190bd7a2dd5312bd
+      internalID: 1153844075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monkey-OnhandMove-Sheet_1
+      name: Elephant-Idle-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,50 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36d2ad8c7f7de6145aa2e0d9acccbaeb
-      internalID: -107820965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey-OnhandMove-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 153b6734f6acbdb458cf6e808200f1e2
-      internalID: -121172437
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monkey-OnhandMove-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 907afdd491735c74484193a03cc8ae72
-      internalID: -659369253
+      spriteID: 92194c59977d71f4dbe74d1531621b46
+      internalID: -1158571810
       vertices: []
       indices: 
       edges: []
@@ -217,10 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Monkey-OnhandMove-Sheet_0: -1366212698
-      Monkey-OnhandMove-Sheet_1: -107820965
-      Monkey-OnhandMove-Sheet_2: -121172437
-      Monkey-OnhandMove-Sheet_3: -659369253
+      Elephant-Idle-Sheet_0: 1153844075
+      Elephant-Idle-Sheet_1: -1158571810
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

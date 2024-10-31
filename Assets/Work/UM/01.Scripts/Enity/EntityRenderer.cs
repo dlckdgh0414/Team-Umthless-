@@ -20,7 +20,7 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     public void Flip()
     {
         FacingDirection *= -1;
-        _entity.transform.localScale = new Vector3(_entity.transform.localScale.x * -1, 1, 1);
+        _entity.transform.localScale = new Vector3(_entity.transform.localScale.x * -1, _entity.transform.localScale.y, 1);
     }
 
     public void FlipController(float xMove)

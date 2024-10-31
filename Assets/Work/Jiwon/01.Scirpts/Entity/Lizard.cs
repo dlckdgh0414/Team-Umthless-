@@ -12,6 +12,7 @@ public class Lizard : Entity
     
     private WallCheck _wallCheck;
     private bool _isWallRen;
+    private bool _isWallRight;
 
     private float _wallMoveDir;
     
@@ -38,6 +39,7 @@ public class Lizard : Entity
             if (_wallCheck.IsWallCheck())
             {
                 int wallDir = _wallCheck.isRightWall ? 90 : -90;
+                _isWallRight = _wallCheck.isRightWall;
                 
                 RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
                 transform.eulerAngles = new Vector3(0, 0, wallDir);
@@ -104,7 +106,13 @@ public class Lizard : Entity
         if (_isWallRen)
         {
             WallMove(_player.InputComp.MoveDir);
-            _renderer.FlipController(-_player.InputComp.MoveDir.y);
+            if (!_isWallRight)
+            {
+                _renderer.FlipController(-_player.InputComp.MoveDir.y);
+                
+            }
+            else if (_isWallRight)
+                _renderer.FlipController(_player.InputComp.MoveDir.y);
         }
     }
 

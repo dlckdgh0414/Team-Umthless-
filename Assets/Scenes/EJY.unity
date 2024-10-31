@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &217389184 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4744053883494648450, guid: 53a27a9ee4de3b149b95422f65125a43, type: 3}
-  m_PrefabInstance: {fileID: 8834754051682570784}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18691c5e779b5742abf7fb38dddc945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +483,7 @@ GameObject:
   - component: {fileID: 922789681}
   - component: {fileID: 922789682}
   - component: {fileID: 922789683}
+  - component: {fileID: 922789684}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -559,7 +549,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 825928622, guid: 224d5067ef09d584a8f5c831f38b5a53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -589,6 +579,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &922789684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922789680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf1659bca8834b488f8405bc47d15ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1314775371
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InputComp>k__BackingField: {fileID: 11400000, guid: 9b99c6f6d0b4aac41bc515aa34a40e41, type: 2}
-  initEntity: {fileID: 217389184}
+  initEntity: {fileID: 1966002583}
   maxHackingCharge: 2
   OnHackingEvent:
     m_PersistentCalls:
@@ -904,8 +906,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: 0.1}
-  m_Size: {x: 0.3, y: 0.4}
+  m_Offset: {x: 0, y: 0.1}
+  m_Size: {x: 0.5, y: 0.5}
   m_Direction: 0
 --- !u!114 &1966002583
 MonoBehaviour:
@@ -921,6 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canMove: 0
   _moveData: {fileID: 11400000, guid: 7572d4afac2d8b54183a9aebb1f12f0e, type: 2}
+  _flyPower: 2
 --- !u!1001 &7141977832890454447
 PrefabInstance:
   m_ObjectHideFlags: 0

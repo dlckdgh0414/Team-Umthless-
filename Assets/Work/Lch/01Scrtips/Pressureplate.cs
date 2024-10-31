@@ -17,7 +17,7 @@ public class Pressureplate : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Animal"))
         {
             PressPlate();
         }

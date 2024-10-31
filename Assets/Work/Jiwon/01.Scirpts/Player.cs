@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine.Events;
 
 public class Player : MonoBehaviour
@@ -15,9 +16,11 @@ public class Player : MonoBehaviour
     public float maxHackingCharge;
     public UnityEvent OnHackingEvent;
     public NotifyValue<float> _hackingCharging;
+    public float canHackingDistance;
     private bool _isHacking;
     private Entity _currentEntity;
     private Entity _nextEntity;
+    [SerializeField] private HackingUI hackingUI;
 
     private void OnEnable()
     {
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
         _currentEntity = initEntity;
         _currentEntity.HackingEnter(this);
         VirtualCamera.Follow = _currentEntity.transform;
+        DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, _currentEntity._moveData.camFov, 1f);
     }
 
     private void OnDisable()
@@ -54,17 +58,19 @@ public class Player : MonoBehaviour
     {
         if (isHacking)
         {
-            _isHacking = true;
-            
-            Vector2 point = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(point);
-            
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward);
+            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward);
             
             if (!hit) return;
-            
+
             if (hit.collider.TryGetComponent(out Entity entity))
-                _nextEntity = entity;
+            {
+                if (Vector3.Distance(_currentEntity.transform.position, entity.transform.position) <=
+                    canHackingDistance)
+                {
+                    _nextEntity = entity;
+                    _isHacking = true;
+                }
+            }
         }
         else if (!isHacking && _hackingCharging.Value < maxHackingCharge)
         {
@@ -72,7 +78,14 @@ public class Player : MonoBehaviour
             
             _hackingCharging.Value = 0;
             _nextEntity = null;
+            hackingUI.HackingCansle();
         }
+    }
+
+    private Vector3 GetMousePos()
+    {
+        Vector3 point = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+        return Camera.main.ScreenToWorldPoint(point);
     }
 
     private void Update()
@@ -80,6 +93,25 @@ public class Player : MonoBehaviour
         if (_isHacking)
         {
             _hackingCharging.Value += Time.deltaTime;
+            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward);
+            if (!hit)
+            {
+                _isHacking = false;
+            
+                _hackingCharging.Value = 0;
+                _nextEntity = null;
+                hackingUI.HackingCansle();
+                return;
+            }
+
+            if (!hit.collider.TryGetComponent(out Entity entity))
+            {
+                _isHacking = false;
+            
+                _hackingCharging.Value = 0;
+                hackingUI.HackingCansle();
+                _nextEntity = null;
+            }
         }
     }
     
@@ -96,15 +128,32 @@ public class Player : MonoBehaviour
         if (_nextEntity == null) return;
         if (_currentEntity == _nextEntity) return;
         
+        hackingUI.HackingCansle();
+        
         _hackingCharging.Value = 0;
         _isHacking = false;
         
         _currentEntity.HackingExit();
         _currentEntity = _nextEntity;
         _currentEntity.HackingEnter(this);
+        DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, _currentEntity._moveData.camFov, 1f);
         _nextEntity = null;
         
         VirtualCamera.Follow = _currentEntity.transform;
         OnHackingEvent?.Invoke();
     }
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmosSelected()
+    {
+        if (_currentEntity != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(_currentEntity.transform.position, canHackingDistance);
+            Gizmos.color = Color.white;
+        }
+    }
+
+#endif
 }

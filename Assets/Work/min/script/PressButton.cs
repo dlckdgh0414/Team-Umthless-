@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PressButton : MonoBehaviour
 {
@@ -15,12 +14,13 @@ public class PressButton : MonoBehaviour
 
     private void OnButtonPressed()
     {
+        _animator.SetBool("Pressed", true);
         OnPressedEvent?.Invoke();
     }
 
     private void OnButtonExit()
     {
-
+        _animator.SetBool("Pressed", false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +30,6 @@ public class PressButton : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        OnButtonExit();
     }
 }

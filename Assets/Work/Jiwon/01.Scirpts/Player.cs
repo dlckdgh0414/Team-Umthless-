@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
             
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward);
             
-            if (hit == null) return;
+            if (!hit) return;
             
             if (hit.collider.TryGetComponent(out Entity entity))
                 _nextEntity = entity;

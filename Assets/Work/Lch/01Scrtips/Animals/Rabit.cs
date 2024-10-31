@@ -6,14 +6,10 @@ using UnityEngine;
 public class Rabit : Entity
 {
     [SerializeField] private AnimTypeSO _moveType;
+    [SerializeField] private AnimTypeSO _jumpType;
+    [SerializeField] private AnimTypeSO _failType;
     private float jumpPower;
     private bool IsCharging;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        
-    }
 
     private void Start()
     {
@@ -29,6 +25,17 @@ public class Rabit : Entity
 
     private void Update()
     {
+        if (RigidCompo.velocity.y < 0)
+        {
+            AnimCompo.SetParam(_jumpType, false);
+            AnimCompo.SetParam(_failType, true);
+        }
+
+        if (CheckCompo.IsGround)
+        {
+            AnimCompo.SetParam(_failType, false);
+        }
+
         if (IsCharging)
         {
             _canMove = false;
@@ -40,22 +47,14 @@ public class Rabit : Entity
             _canMove = true;
             jumpPower = _moveData.jumpPower;
         }
-    }
 
-    public override void HackingExit()
-    {
-        _player = null;
-        _player.InputComp.OnJumpChargingEvent -= Jump;
-        _canMove = false;
-    }
-
-    private void Jump(bool isCharging)
-    {
-        IsCharging = isCharging;
-        if (!isCharging)
+        if (RigidCompo.velocity.x != 0)
         {
-            RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            jumpPower = _moveData.jumpPower;
+            AnimCompo.SetParam(_moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType, false);
         }
     }
 
@@ -69,6 +68,24 @@ public class Rabit : Entity
         else
         {
             AnimCompo.SetParam(_moveType, false);
+        }
+    }
+
+    public override void HackingExit()
+    {
+        _player = null;
+        _player.InputComp.OnJumpChargingEvent -= Jump;
+        _canMove = false;
+    }
+
+    private void Jump(bool isCharging)
+    {
+        IsCharging = isCharging;
+        if (!isCharging && CheckCompo.IsGround)
+        {
+            AnimCompo.SetParam(_jumpType, true);
+            RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            jumpPower = _moveData.jumpPower;
         }
     }
 

@@ -10,12 +10,6 @@ public class Rabit : Entity
     private float jumpPower;
     private bool IsCharging;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        
-    }
-
     private void Start()
     {
         jumpPower = _moveData.jumpPower;
@@ -30,6 +24,11 @@ public class Rabit : Entity
 
     private void Update()
     {
+        if (CheckCompo.IsGround)
+        {
+            AnimCompo.SetParam(_jumpType, false);
+        }
+
         if (IsCharging)
         {
             _canMove = false;
@@ -40,6 +39,28 @@ public class Rabit : Entity
         {
             _canMove = true;
             jumpPower = _moveData.jumpPower;
+        }
+
+        if (RigidCompo.velocity.x != 0)
+        {
+            AnimCompo.SetParam(_moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType, false);
+        }
+    }
+
+    protected override void Move(Vector2 dir)
+    {
+        base.Move(dir);
+        if(dir.x != 0)
+        {
+            AnimCompo.SetParam(_moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType, false);
         }
     }
 
@@ -58,19 +79,6 @@ public class Rabit : Entity
             AnimCompo.SetParam(_jumpType, true);
             RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             jumpPower = _moveData.jumpPower;
-        }
-    }
-
-    protected override void Move(Vector2 dir)
-    {
-        base.Move(dir);
-        if(dir.x != 0)
-        {
-            AnimCompo.SetParam(_moveType, true);
-        }
-        else
-        {
-            AnimCompo.SetParam(_moveType, false);
         }
     }
 

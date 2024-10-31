@@ -39,7 +39,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
         _components.Values.ToList().ForEach(component => component.Initialize(this));
     }
 
-    [SerializeField] protected MovementDataSO _moveData;
+    [SerializeField] protected AnimalDataSO _moveData;
 
     protected virtual void FixedUpdate()
     {

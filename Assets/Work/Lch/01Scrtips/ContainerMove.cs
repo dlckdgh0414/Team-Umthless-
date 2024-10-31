@@ -7,7 +7,7 @@ public class ContainerMove : MonoBehaviour
 
     private Rigidbody2D _rbCompo;
 
-   [SerializeField] private MovementDataSO _move;
+   [SerializeField] private AnimalDataSO _move;
 
     private void Awake()
     {

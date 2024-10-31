@@ -37,6 +37,8 @@ public class Rhino : Entity
                 _currentTime = 0f;
             }
         }
+
+        //if(_player.)
     }
 
     protected override void FixedUpdate()

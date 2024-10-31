@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dad73c3d05b7d4ea61db0fc27df2cc, type: 3}
   m_Name: Rat
   m_EditorClassIdentifier: 
-  IconSprite: {fileID: 0}
+  IconSprite: {fileID: 21300000, guid: fb6da08ccde55ef4db7dc3a3c43a4c02, type: 3}
   moveSpeed: 8
   jumpPower: 2
   camFov: 7

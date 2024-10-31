@@ -13,6 +13,8 @@ public class InputReader : ScriptableObject, IPlayerInputActions
     public Action<bool> OnJumpChargingEvent;
     public Action OnSkillEvent;
     public Action<bool> OnSkillChargingEvent;
+    public Action<bool> OnHackingChargingEvent;
+    public Action OnHackingCanceleEvent;
 
     private void OnEnable()
     {
@@ -50,5 +52,15 @@ public class InputReader : ScriptableObject, IPlayerInputActions
         }
         else if (context.canceled)
             OnSkillChargingEvent?.Invoke(false);
+    }
+
+    public void OnHacking(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            OnHackingChargingEvent?.Invoke(true);
+        else if (context.performed)
+            OnHackingChargingEvent?.Invoke(false);
+        else if (context.canceled)
+            OnHackingCanceleEvent?.Invoke();
     }
 }

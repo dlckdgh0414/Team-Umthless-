@@ -3,7 +3,7 @@
 /// </summary>
 public interface IHackingEnter
 {
-    public void HackingEnter();
+    public abstract void HackingEnter(Player player);
 }
 
 /// <summary>
@@ -11,5 +11,5 @@ public interface IHackingEnter
 /// </summary>
 public interface IHackingExit
 {
-    public void HackingExit();
+    public abstract void HackingExit();
 }

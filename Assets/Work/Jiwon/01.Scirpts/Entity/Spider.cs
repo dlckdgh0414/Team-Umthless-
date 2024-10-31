@@ -11,8 +11,9 @@ public class Spider : Entity
     private bool _isSwing;
     private bool _isFire;
 
-    [Header("SpiderSetting")] 
-    [SerializeField] private Transform firePos;
+    [Header("SpiderSetting")] [SerializeField]
+    private Transform firePos;
+
     [SerializeField] private Transform buillet;
     [SerializeField] private float builletSpeed;
     [SerializeField] private LayerMask whatIsWall;
@@ -28,7 +29,7 @@ public class Spider : Entity
         base.Awake();
         _joint = GetComponent<SpringJoint2D>();
         _line = GetComponent<LineRenderer>();
-        
+
         _joint.enabled = false;
         buillet.gameObject.SetActive(false);
     }
@@ -47,16 +48,18 @@ public class Spider : Entity
             buillet.gameObject.SetActive(true);
             Vector2 mousePos = Mouse.current.position.ReadValue();
             Vector2 mouse = Camera.main.ScreenToWorldPoint(mousePos);
+            RigidCompo.velocity = Vector2.zero;
             _line.positionCount = 2;
-            _line.SetPosition(0,transform.position);
+            _line.SetPosition(0, transform.position);
             _builletDir = (mouse - (Vector2)transform.position).normalized;
             _isFire = true;
+            _canMove = false;
             _builletTimer = 0;
         }
-        
-        else if (_isFire)
+
+        else if (_isSwing)
         {
-            
+            ResetBuillet();
         }
     }
 
@@ -69,17 +72,19 @@ public class Spider : Entity
             {
                 ResetBuillet();
             }
-            Collider2D hitWall = Physics2D.OverlapCircle(buillet.position, builletRadius, whatIsWall);
 
-            _line.SetPosition(1,buillet.position);
+            Collider2D hitWall = Physics2D.OverlapCircle(buillet.position, builletRadius, whatIsWall);
+            _line.SetPosition(0, transform.position);
+            _line.SetPosition(1, buillet.position);
             if (hitWall != null)
             {
                 StuckWap(buillet.position);
             }
+
             buillet.position += (Vector3)_builletDir * builletSpeed * Time.deltaTime;
         }
 
-        if (_isSwing)
+        if (_isSwing && _line.positionCount <= 2)
         {
             buillet.position = _hitPoint;
             _line.SetPosition(0, transform.position);
@@ -88,26 +93,29 @@ public class Spider : Entity
 
     private void StuckWap(Vector3 hit)
     {
-        if (hit == Vector3.zero) return;
         _canMove = false;
-        _hitPoint = hit;
         _isFire = false;
         _isSwing = true;
         _joint.enabled = true;
+        _hitPoint = hit;
         _joint.connectedAnchor = _hitPoint;
-        
+
         float dist = Vector3.Distance(transform.position, hit);
         _joint.distance = dist * tension;
     }
-    
+
     private void ResetBuillet()
     {
-        _builletTimer = 0;
         _isFire = false;
+        _isSwing = false;
+        _line.positionCount = 0;
+        _builletTimer = 0;
         _builletDir = Vector2.zero;
         buillet.position = firePos.position;
         _joint.anchor = Vector2.zero;
+        _joint.enabled = false;
         buillet.gameObject.SetActive(false);
+        _canMove = true;
     }
 
     public override void HackingExit()

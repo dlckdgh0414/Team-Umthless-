@@ -57,10 +57,19 @@ public class Player : MonoBehaviour
     
     private void HandleHackingChanged(float prev, float next)
     {
-        // if (next > maxHackingCharge)
-        // {
-        //     _currentEntity = _nextEntity;
-        //     _currentEntity.
-        // }
+        if (next > maxHackingCharge)
+        {
+            Hacking();
+        }
+    }
+
+    private void Hacking()
+    {
+        //_currentEntity. //제유 오면 엔티티 수정후 해킹 나가기
+        _currentEntity = _nextEntity;
+        //_currentEntity //제유 오면 엔티티 수정후 해킹 들어가기
+        _nextEntity = null;
+        
+        _virtualCamera.Follow = _currentEntity.transform;
     }
 }

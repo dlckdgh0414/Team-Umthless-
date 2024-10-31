@@ -12,6 +12,7 @@ public class Lizard : Entity
     {
         base.Awake();
         _wallCheck = GetComponentInChildren<WallCheck>();
+        _wallCheck.Initialized(this);
         _isWallRen = false;
     }
 
@@ -27,7 +28,9 @@ public class Lizard : Entity
         {
             if (_wallCheck.IsWallCheck())
             {
+                int wallDir = _wallCheck.isRightWall ? 90 : -90;
                 
+                RigidCompo.AddForce(new Vector2());
             }
         }
     }

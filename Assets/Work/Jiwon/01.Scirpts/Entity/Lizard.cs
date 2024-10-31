@@ -24,8 +24,9 @@ public class Lizard : Entity
         _player = player;
         _player.InputComp.OnSkillEvent += HandleWallRunEvent;
         _player.InputComp.OnJumpEvent += Jump;
+        _canMove = true;
     }
-
+    
     private void HandleWallRunEvent()
     {
         if (_isWallRen)
@@ -42,7 +43,9 @@ public class Lizard : Entity
 
     public override void HackingExit()
     {
+        _canMove = false;
         _player.InputComp.OnSkillEvent -= HandleWallRunEvent;
         _player.InputComp.OnJumpEvent -= Jump;
+        _player = null;
     }
 }

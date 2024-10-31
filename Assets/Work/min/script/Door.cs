@@ -10,7 +10,7 @@ public class Door : MonoBehaviour
 
     [SerializeField] private bool _hasTime;
     [SerializeField] private float _currentTime, _time;
-    [SerializeField] private PressButton _pressButton;
+    [SerializeField] private PullLever _pressButton;
 
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _doorSprite;
@@ -23,7 +23,8 @@ public class Door : MonoBehaviour
         _doorSprite = transform.Find("Visual").GetComponent<SpriteRenderer>();
         _boxCollider = GetComponent<BoxCollider2D>();
 
-        _pressButton.OnPressedEvent += HandleDoorChange;
+        if (_pressButton != null)
+            _pressButton.OnPressedEvent += HandleDoorChange;
     }
 
     private void Update()
@@ -41,7 +42,9 @@ public class Door : MonoBehaviour
             {
                 _currentTime = 0;
                 _isTimerStart = false;
-                _pressButton.ButtonStatus(false);
+
+                if (_pressButton != null)
+                    _pressButton.ButtonStatus(false);
             }
         }
     }

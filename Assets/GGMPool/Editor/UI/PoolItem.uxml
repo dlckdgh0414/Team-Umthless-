@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/GGMPool/Editor/UI/PoolItem.uss?fileID=7433441132597879392&amp;guid=e43d3af90e67750449cb7d3a65e5b823&amp;type=3#PoolItem" />
+    <ui:VisualElement name="PoolItem" class="pool-item">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemName" style="text-overflow: ellipsis; flex-basis: 180px; flex-grow: 1; flex-shrink: 1; overflow: hidden; font-size: 14px;" />
+        <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BtnDelete" class="btn-red" />
+    </ui:VisualElement>
+</ui:UXML>

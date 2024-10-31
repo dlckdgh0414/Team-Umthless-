@@ -37,7 +37,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 
     [SerializeField] protected MovementDataSO _moveData;
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (!_canMove) return;
         Move(_player.InputComp.MoveDir);

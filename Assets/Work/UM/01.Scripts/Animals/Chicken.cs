@@ -2,10 +2,29 @@ using UnityEngine;
 
 public class Chicken : Entity
 {
+    [SerializeField] private AnimTypeSO _moveType;
+
     public override void HackingEnter(Player player)
     {
         _player = player;
         _canMove = true;
+    }
+
+    private void Update()
+    {
+        if (RigidCompo.velocity.y < 0)
+        {
+
+        }
+
+        if (RigidCompo.velocity.x != 0)
+        {
+            AnimCompo.SetParam(_moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType, false);
+        }
     }
 
     protected override void Move(Vector2 dir)

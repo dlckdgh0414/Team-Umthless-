@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         
         _currentEntity.HackingExit();
         _currentEntity = _nextEntity;
-        _currentEntity.HackingEnter();
+        _currentEntity.HackingEnter(this);
         _nextEntity = null;
         
         _virtualCamera.Follow = _currentEntity.transform;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dad73c3d05b7d4ea61db0fc27df2cc, type: 3}
   m_Name: Rhino
   m_EditorClassIdentifier: 
-  IconSprite: {fileID: 0}
+  IconSprite: {fileID: 21300000, guid: 5d30a0b11cff26f4f8b78e09b234b138, type: 3}
   moveSpeed: 8
-  jumpPower: 5
+  jumpPower: 8
   camFov: 7

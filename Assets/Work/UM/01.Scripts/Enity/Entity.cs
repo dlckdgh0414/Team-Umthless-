@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public abstract class Entity : MonoBehaviour
+{
+    protected Dictionary<Type, IEntityComponent> _components;
+
+    protected Rigidbody2D RigidCompo;
+
+    private void Awake()
+    {
+        RigidCompo = GetComponent<Rigidbody2D>();
+
+        _components = new Dictionary<Type, IEntityComponent>();
+        GetComponentsInChildren<IEntityComponent>(true).ToList()
+            .ForEach(component => _components.Add(component.GetType(), component));
+
+        InitComponents();
+    }
+
+    private void InitComponents()
+    {
+        _components.Values.ToList().ForEach(component => component.Initialize(this));
+    }
+
+    [SerializeField] protected MovementDataSO _moveData;
+
+    protected virtual void Move(Vector2 dir)
+    {
+        RigidCompo.velocity = new Vector2(dir.x * _moveData.moveSpeed, RigidCompo.velocity.y);
+    }
+
+    protected virtual void Jump()
+    {
+        RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
+    }
+}

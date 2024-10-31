@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IconSprite: {fileID: 0}
   moveSpeed: 5
-  jumpPower: 2
+  jumpPower: 8
   camFov: 7

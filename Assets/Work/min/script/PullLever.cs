@@ -12,7 +12,6 @@ public class PullLever : MonoBehaviour
     private void Awake()
     {
         _animator = transform.Find("Visual").GetComponent<Animator>();
-        _playerTrm = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
@@ -22,6 +21,8 @@ public class PullLever : MonoBehaviour
 
     private void CheckButtonPress()
     {
+        if (_playerTrm == null) return;
+
         if ((_playerTrm.position - transform.position).magnitude < 1)
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -35,5 +36,13 @@ public class PullLever : MonoBehaviour
     {
         _animator.SetBool("IsPulled", isPressed);
         OnPressedEvent?.Invoke(isPressed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Animal"))
+        {
+            _playerTrm = collision.transform;
+        }
     }
 }

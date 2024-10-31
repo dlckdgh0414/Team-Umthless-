@@ -59,8 +59,8 @@ public class Rhino : Entity
 
     public override void HackingExit()
     {
-        _player = null;
         _player.InputComp.OnJumpEvent -= Jump;
+        _player = null;
     }
 
     private void Dash()

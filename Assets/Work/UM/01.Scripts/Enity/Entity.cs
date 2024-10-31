@@ -10,6 +10,8 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected Rigidbody2D RigidCompo;
     protected Player _player;
 
+    protected EntityRenderer _renderer;
+
     [HideInInspector]
     protected bool _canMove;
 
@@ -24,6 +26,8 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
             .ForEach(component => _components.Add(component.GetType(), component));
 
         InitComponents();
+
+        _renderer = GetComponentInChildren<EntityRenderer>();
     }
 
     private void InitComponents()
@@ -42,6 +46,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected virtual void Move(Vector2 dir)
     {
         RigidCompo.velocity = new Vector2(dir.x * _moveData.moveSpeed, RigidCompo.velocity.y);
+        _renderer.FlipController(dir.x);
     }
 
     protected virtual void Jump()

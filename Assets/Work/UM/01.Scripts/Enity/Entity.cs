@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 
     protected EntityRenderer _renderer;
 
-    [HideInInspector]
+    [SerializeField]
     protected bool _canMove;
 
     protected virtual void Awake()

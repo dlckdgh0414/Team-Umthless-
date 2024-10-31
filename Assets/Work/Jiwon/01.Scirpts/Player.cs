@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour
 
         _hackingCharging.OnValueChanged += HandleHackingChanged;
 
+    }
+
+    private void Start()
+    {
         Initialized();
     }
 

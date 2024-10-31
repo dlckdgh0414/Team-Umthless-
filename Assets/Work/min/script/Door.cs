@@ -2,6 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using GGMPool;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class Door : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        _doorSprite = GameObject.Find("Visual").GetComponent<SpriteRenderer>();
+        _doorSprite = transform.Find("Visual").GetComponent<SpriteRenderer>();
 
         _pressButton.OnPressedEvent += HandleDoorChange;
     }

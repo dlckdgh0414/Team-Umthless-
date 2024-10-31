@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum AnimParm
 {
-    None ,Idle, Move, Skill, Jump, Fail, dashCrash, Push, climb, OnHand, OnHandMove
+    None, Idle, Move, Skill, Jump, Fail, dashCrash, Push, climb, OnHand, OnHandMove
 }
 public enum Animals
 {
-    None, Rabit,Cat,Rat,Lizard,Chicken,Bunny,Rhino,Elephant,Bat,Ape,Human,Spider
+    None, Rabit, Cat, Rat, Lizard, Chicken, Bunny, Rhino, Elephant, Bat, Ape, Human, Spider
 }
 [CreateAssetMenu(menuName = "Anim/SO/AnimType")]
 public class AnimTypeSO : ScriptableObject
 {
     public AnimParm animType;
     public Animals animals;
-	public int hashValue;
+    public int hashValue;
 
     private void OnValidate()
     {
         if (animType == AnimParm.None) return;
-        hashValue = Animator.StringToHash(animals.ToString()+animType.ToString());
+        hashValue = Animator.StringToHash(animals.ToString() + animType.ToString());
     }
 }

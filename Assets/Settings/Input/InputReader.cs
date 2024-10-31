@@ -7,7 +7,7 @@ using static Console;
 public class InputReader : ScriptableObject, IPlayerInputActions
 {
     private Console _console;
-    
+
     public Vector2 MoveDir { get; private set; }
     public Action OnJumpEvent;
     public Action<bool> OnJumpChargingEvent;

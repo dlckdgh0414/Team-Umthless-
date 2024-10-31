@@ -1,6 +1,5 @@
-using UnityEngine;
-using UnityEngine.Events;
 using DG.Tweening;
+using UnityEngine;
 
 public class VisibleWall : MonoBehaviour
 {

@@ -16,13 +16,13 @@ public class Elephant : Entity
     protected override void Move(Vector2 dir)
     {
         base.Move(dir);
-        if(dir.x != 0)
+        if (dir.x != 0)
         {
-            AnimCompo.SetParam(_moveType,true);
+            AnimCompo.SetParam(_moveType, true);
         }
         else
         {
-            AnimCompo.SetParam(_moveType,false);
+            AnimCompo.SetParam(_moveType, false);
         }
     }
 
@@ -31,7 +31,7 @@ public class Elephant : Entity
         if (collision.gameObject.CompareTag("Push"))
         {
 
-            AnimCompo.SetParam(_pushType,true);
+            AnimCompo.SetParam(_pushType, true);
 
             if (collision.gameObject.TryGetComponent(out Rigidbody2D rigid))
             {

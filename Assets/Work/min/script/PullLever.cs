@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.InputSystem;
 
 public class PullLever : MonoBehaviour
 {

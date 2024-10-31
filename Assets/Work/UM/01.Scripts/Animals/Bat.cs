@@ -62,7 +62,7 @@ public class Bat : Entity
     public override void HackingExit()
     {
         _canMove = false;
-        _player.InputComp.OnJumpEvent -= Jump;
+        _player.InputComp.OnJumpChargingEvent -= Fly;
         _player = null;
     }
 

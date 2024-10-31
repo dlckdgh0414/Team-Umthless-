@@ -9,6 +9,10 @@ public class GroundCheck : MonoBehaviour, IEntityComponent
 
     public bool IsGround { get; private set; }
 
+    private void FixedUpdate()
+    {
+        CheckGround();
+    }
     public void CheckGround()
     {
         Collider2D groundCollider = Physics2D.OverlapBox(transform.position, _size, 0, _whatIsGround);

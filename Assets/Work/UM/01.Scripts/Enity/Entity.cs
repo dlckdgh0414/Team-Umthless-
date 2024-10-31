@@ -50,11 +50,12 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected virtual void Move(Vector2 dir)
     {
         RigidCompo.velocity = new Vector2(dir.x * _moveData.moveSpeed, RigidCompo.velocity.y);
-        _renderer.FlipController(dir.x);
+        _renderer?.FlipController(dir.x);
     }
 
     protected virtual void Jump()
     {
+        if(CheckCompo.IsGround)
         RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
     }
 

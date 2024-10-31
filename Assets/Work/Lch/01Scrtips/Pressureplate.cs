@@ -7,8 +7,13 @@ using System;
 
 public class Pressureplate : MonoBehaviour
 {
-
     public UnityEvent OnPressEvent;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = transform.parent.GetComponent<Animator>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,12 +26,12 @@ public class Pressureplate : MonoBehaviour
     private void PressPlate()
     {
         OnPressEvent?.Invoke();
-        transform.localScale = new Vector3(1, 0.5f);
+        _animator.SetBool("IsPressed", true);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        transform.localScale = new Vector3(1, 1);
         OnPressEvent.RemoveAllListeners();
+        _animator.SetBool("IsPressed", false);
     }
 }

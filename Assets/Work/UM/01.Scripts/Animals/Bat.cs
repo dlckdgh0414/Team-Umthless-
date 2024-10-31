@@ -6,18 +6,38 @@ using UnityEngine;
 public class Bat : Entity
 {
     [SerializeField] private float _flyPower;
-    protected override void Awake()
-    {
-        base.Awake();
+    [SerializeField] private float _radius;
+    [SerializeField] private LayerMask _whatIsInvisible;
 
-        RigidCompo.gravityScale = 0;
-    }
+    private Collider2D[] _colliders;
 
     public override void HackingEnter(Player player)
     {
         _player = player;
         _player.InputComp.OnJumpChargingEvent += Fly;
         _canMove = true;
+    }
+
+    private void Update()
+    {
+        if (!_canMove) return;
+
+        CheckInvisibleWall();
+    }
+
+    private void CheckInvisibleWall()
+    {
+        _colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _whatIsInvisible);
+
+        Debug.Log(_colliders.Length);
+
+        foreach (Collider2D collider in _colliders)
+        {
+            if (collider.gameObject.TryGetComponent(out VisibleWall visible))
+            {
+                visible.IsVisible.Value = true;
+            }
+        }
     }
 
     private void Fly(bool isFly)
@@ -28,10 +48,6 @@ public class Bat : Entity
         {
             RigidCompo.AddForce(Vector2.up * _flyPower, ForceMode2D.Impulse);
         }
-        else
-        {
-            RigidCompo.AddForce(Vector2.down * _flyPower * 1.2f, ForceMode2D.Impulse);
-        }
     }
 
     public override void HackingExit()
@@ -39,5 +55,11 @@ public class Bat : Entity
         _canMove = false;
         _player.InputComp.OnJumpEvent -= Jump;
         _player = null;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }

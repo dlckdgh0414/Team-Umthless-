@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class Rhino : Entity
 {
+
+    [SerializeField] private AnimTypeSO moveType;
+
     private float _dashPower = 12f;
 
     public bool _isDashing;
@@ -17,7 +20,6 @@ public class Rhino : Entity
         _player.InputComp.OnSkillEvent += Dash;
 
         _canMove = true;
-        Debug.Log("¿‘∞∂");
     }
 
     private void Update()
@@ -33,11 +35,26 @@ public class Rhino : Entity
                 _currentTime = 0f;
             }
         }
+
+        //if(_player.)
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    protected override void Move(Vector2 dir)
+    {
+        base.Move(dir);
+        if(dir.x != 0)
+        {
+            AnimCompo.SetParam(moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(moveType, false);
+        }
     }
 
     public override void HackingExit()

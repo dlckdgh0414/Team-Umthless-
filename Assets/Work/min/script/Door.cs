@@ -3,6 +3,7 @@ using UnityEngine;
 using GGMPool;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System;
 
 public class Door : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class Door : MonoBehaviour
 
     [SerializeField] private bool _hasTime;
     [SerializeField] private float _currentTime, _time;
-    [SerializeField] private PressButton _pressButton;
+    [SerializeField] private PullLever _pressButton;
 
+    private BoxCollider2D _boxCollider;
     private SpriteRenderer _doorSprite;
 
     private bool _isOpened;
@@ -20,8 +22,10 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         _doorSprite = transform.Find("Visual").GetComponent<SpriteRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
 
-        _pressButton.OnPressedEvent += HandleDoorChange;
+        if (_pressButton != null)
+            _pressButton.OnPressedEvent += HandleDoorChange;
     }
 
     private void Update()
@@ -33,15 +37,33 @@ public class Door : MonoBehaviour
     {
         if (_isTimerStart)
         {
+            Debug.Log("sdf");
             _currentTime += Time.deltaTime;
 
             if (_currentTime > _time)
             {
-                _currentTime = 0;
-                _isTimerStart = false;
-                _pressButton.ButtonStatus(false);
+                OnTimerEnd();
             }
         }
+    }
+
+    private void OnTimerEnd()
+    {
+        _currentTime = 0;
+        _isTimerStart = false;
+
+        if (_pressButton != null)
+            _pressButton.ButtonStatus(false);
+
+        DOVirtual.DelayedCall(0.25f, () => 
+        _doorSprite.DOFade(1, 0.5f).OnComplete(() =>
+        {
+            gameObject.SetActive(true);
+            _boxCollider.enabled = true;
+            _isOpened = false;
+        }));
+
+        DoorChangeEvent?.Invoke();
     }
 
     public void HandleDoorChange(bool isOpened)
@@ -52,9 +74,10 @@ public class Door : MonoBehaviour
         _doorSprite.DOFade(0, 0.5f).OnComplete(() =>
         {
             gameObject.SetActive(isOpened);
+            _boxCollider.enabled = !isOpened;
         }));
 
-        if (_isOpened && _hasTime)
+        if (!_isOpened && _hasTime)
             _isTimerStart = true;
 
         _isOpened = isOpened;

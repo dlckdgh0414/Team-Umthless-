@@ -22,9 +22,11 @@ public class BrokeningWall : MonoBehaviour
            BrokeningObj();
     }
 
-    private void BrokeningObj()
+    public void BrokeningObj()
     {
-       _sprite.material.DOFade( 0, 1.5f);
+       _sprite.material.DOFade(0, 1.5f)
+            .OnComplete(() => Destroy(gameObject));
+        
         OnGrithchEvent?.Invoke();
     }
 }

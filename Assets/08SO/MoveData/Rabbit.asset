@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rabbit
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpPower: 2
+  jumpPower: 3

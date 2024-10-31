@@ -8,8 +8,10 @@ public class Rabit : Entity
     [SerializeField] private AnimTypeSO _moveType;
     [SerializeField] private AnimTypeSO _jumpType;
     [SerializeField] private AnimTypeSO _failType;
+    [SerializeField] private float _jumpChraging;
     private float jumpPower;
     private bool IsCharging;
+    private bool _isCharging;
 
     private void Start()
     {
@@ -51,6 +53,11 @@ public class Rabit : Entity
         {
             AnimCompo.SetParam(_moveType, false);
         }
+
+        if (_isCharging)
+        {
+            jumpPower += Time.deltaTime * _jumpChraging;
+        }
     }
 
     protected override void Move(Vector2 dir)
@@ -79,6 +86,8 @@ public class Rabit : Entity
         IsCharging = isCharging;
         if (!isCharging && CheckCompo.IsGround)
         {
+            _isCharging = false;
+            Debug.Log("점프");
             AnimCompo.SetParam(_jumpType, true);
             RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             jumpPower = _moveData.jumpPower;
@@ -93,16 +102,11 @@ public class Rabit : Entity
 
     private void ChargingJump()
     {
-          StartCoroutine(ChargingCoroutine());
+          _isCharging = true;
           if (jumpPower > 10)
           {
               jumpPower = 10;
+              _isCharging = false;
           }
-    }
-
-    private IEnumerator ChargingCoroutine()
-    {
-        yield return new WaitForSeconds(1f);
-        jumpPower += 0.5f;
     }
 }

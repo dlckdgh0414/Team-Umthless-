@@ -125,6 +125,7 @@ MonoBehaviour:
   _moveType: {fileID: 11400000, guid: 3f932afea696bbd4cb9febdf811b795c, type: 2}
   _jumpType: {fileID: 11400000, guid: d45ddb37c05514b4fbbac554baef77aa, type: 2}
   _failType: {fileID: 11400000, guid: 86a0048449b321f4581e0b39212035bd, type: 2}
+  _jumpChraging: 3.5
 --- !u!1 &6038553852350029532
 GameObject:
   m_ObjectHideFlags: 0

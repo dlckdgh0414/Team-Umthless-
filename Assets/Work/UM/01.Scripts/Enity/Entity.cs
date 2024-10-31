@@ -8,6 +8,9 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected Dictionary<Type, IEntityComponent> _components;
 
     protected Rigidbody2D RigidCompo;
+    protected Player _player;
+
+    public bool _canMove;
 
     private void Awake()
     {
@@ -27,6 +30,13 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 
     [SerializeField] protected MovementDataSO _moveData;
 
+    private void FixedUpdate()
+    {
+        if (!_canMove) return;
+
+        Move(_player.InputComp.MoveDir);
+    }
+
     protected virtual void Move(Vector2 dir)
     {
         RigidCompo.velocity = new Vector2(dir.x * _moveData.moveSpeed, RigidCompo.velocity.y);
@@ -37,12 +47,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
         RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
     }
 
-    public void HackingEnter()
-    {
-    }
+    public abstract void HackingEnter(Player player);
 
-    public void HackingExit()
-    {
-
-    }
+    public abstract void HackingExit();
 }

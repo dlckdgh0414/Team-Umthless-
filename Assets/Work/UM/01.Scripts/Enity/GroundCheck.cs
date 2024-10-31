@@ -20,7 +20,7 @@ public class GroundCheck : MonoBehaviour, IEntityComponent
         _entity = entity;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, _size);

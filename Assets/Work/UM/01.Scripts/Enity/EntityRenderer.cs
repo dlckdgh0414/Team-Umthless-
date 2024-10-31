@@ -11,7 +11,6 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
         _animator = GetComponent<Animator>();
     }
 
-    private readonly int _moveHash = Animator.StringToHash("MoveCharacter");
     public void SetParam(AnimParamSO param, bool value) => _animator.SetBool(param.hashValue, value);
     public void SetParam(AnimParamSO param, float value) => _animator.SetFloat(param.hashValue, value);
     public void SetParam(AnimParamSO param, int value) => _animator.SetInteger(param.hashValue, value);
@@ -21,7 +20,7 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     public void Flip()
     {
         FacingDirection *= -1;
-        _entity.transform.Rotate(0, 180f, 0);
+        transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
     }
 
     public void FlipController(float xMove)

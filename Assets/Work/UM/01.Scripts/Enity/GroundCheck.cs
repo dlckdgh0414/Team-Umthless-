@@ -7,10 +7,9 @@ public class GroundCheck : MonoBehaviour, IEntityComponent
 
     private Entity _entity;
 
-    [field : SerializeField]
     public bool IsGround { get; private set; }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CheckGround();
     }

@@ -6,6 +6,11 @@ using UnityEngine;
 public class Bat : Entity
 {
     [SerializeField] private float _flyPower;
+    [SerializeField] private float _radius;
+    [SerializeField] private LayerMask _whatIsInvisible;
+
+    private Collider2D[] _colliders;
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,6 +23,26 @@ public class Bat : Entity
         _player = player;
         _player.InputComp.OnJumpChargingEvent += Fly;
         _canMove = true;
+    }
+
+    private void Update()
+    {
+        if (!_canMove) return;
+
+        CheckInvisibleWall();
+    }
+
+    private void CheckInvisibleWall()
+    {
+        _colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _whatIsInvisible);
+        
+        foreach (Collider2D collider in _colliders)
+        {
+            if (collider.gameObject.TryGetComponent(out VisibleWall visible))
+            {
+                visible.IsVisible.Value = true;
+            }
+        }
     }
 
     private void Fly(bool isFly)

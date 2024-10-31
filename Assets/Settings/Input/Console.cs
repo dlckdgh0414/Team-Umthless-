@@ -145,7 +145,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c272cff4-dade-4af6-b16a-99821ab760a5"",
-                    ""path"": ""<Rat>/rightButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": ""Hold(duration=2)"",
                     ""processors"": """",
                     ""groups"": """",

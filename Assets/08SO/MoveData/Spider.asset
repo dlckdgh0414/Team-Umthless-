@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69dad73c3d05b7d4ea61db0fc27df2cc, type: 3}
-  m_Name: Sprider
+  m_Name: Spider
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpPower: 2

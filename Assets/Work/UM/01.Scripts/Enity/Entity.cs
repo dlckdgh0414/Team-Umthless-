@@ -55,6 +55,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 
     protected virtual void Jump()
     {
+        if(CheckCompo.IsGround)
         RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
     }
 

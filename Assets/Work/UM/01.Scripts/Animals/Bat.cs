@@ -18,7 +18,7 @@ public class Bat : Entity
 
     protected override void Move(Vector2 dir)
     {
-        RigidCompo.velocity = dir;
+        RigidCompo.velocity = dir * _moveData.moveSpeed;
     }
 
     public override void HackingExit()

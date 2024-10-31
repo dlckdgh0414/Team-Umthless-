@@ -5,6 +5,9 @@ using System;
 
 public class Lizard : Entity
 {
+    [Header("LizardSetting")] 
+    [SerializeField] private float lizardToWallJump;
+    
     private WallCheck _wallCheck;
     private bool _isWallRen;
     
@@ -20,6 +23,7 @@ public class Lizard : Entity
     {
         _player = player;
         _player.InputComp.OnSkillEvent += HandleWallRunEvent;
+        _player.InputComp.OnJumpEvent += Jump;
     }
 
     private void HandleWallRunEvent()
@@ -30,7 +34,8 @@ public class Lizard : Entity
             {
                 int wallDir = _wallCheck.isRightWall ? 90 : -90;
                 
-                RigidCompo.AddForce(new Vector2());
+                RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
+                transform.eulerAngles = new Vector3(0, 0, wallDir);
             }
         }
     }
@@ -38,5 +43,6 @@ public class Lizard : Entity
     public override void HackingExit()
     {
         _player.InputComp.OnSkillEvent -= HandleWallRunEvent;
+        _player.InputComp.OnJumpEvent -= Jump;
     }
 }

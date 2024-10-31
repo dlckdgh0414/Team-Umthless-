@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
 
     [Header("HackingSetting")]
     public float maxHackingCharge;
+    public UnityEvent OnHackingEvent;
     public NotifyValue<float> _hackingCharging;
     private bool _isHacking;
     private Entity _currentEntity;
@@ -35,9 +37,10 @@ public class Player : MonoBehaviour
     
     private void HandheldHacking(bool isHacking)
     {
-        _isHacking = isHacking;
         if (isHacking)
         {
+            _isHacking = true;
+            
             Vector2 point = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(point);
             
@@ -45,14 +48,19 @@ public class Player : MonoBehaviour
             if (hit.collider.TryGetComponent(out Entity entity))
                 _nextEntity = entity;
         }
+        else if (!isHacking)
+        {
+            _isHacking = false;
+            
+            _hackingCharging.Value = 0;
+            _currentEntity = null;
+        }
     }
 
     private void Update()
     {
         if (_isHacking)
-        {
             _hackingCharging.Value += Time.deltaTime;
-        }
     }
     
     private void HandleHackingChanged(float prev, float next)
@@ -65,11 +73,17 @@ public class Player : MonoBehaviour
 
     private void Hacking()
     {
-        //_currentEntity. //제유 오면 엔티티 수정후 해킹 나가기
+        if (_nextEntity == null) return;
+        
+        _hackingCharging.Value = 0;
+        _isHacking = false;
+        
+        _currentEntity.HackingExit();
         _currentEntity = _nextEntity;
-        //_currentEntity //제유 오면 엔티티 수정후 해킹 들어가기
+        _currentEntity.HackingEnter();
         _nextEntity = null;
         
         _virtualCamera.Follow = _currentEntity.transform;
+        OnHackingEvent?.Invoke();
     }
 }

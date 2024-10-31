@@ -770,7 +770,7 @@ MonoBehaviour:
   OnHackingEvent:
     m_PersistentCalls:
       m_Calls: []
-  canHackingDistance: 0
+  canHackingDistance: 5
   hackingUI: {fileID: 1736173571}
 --- !u!114 &1302317694 stripped
 MonoBehaviour:

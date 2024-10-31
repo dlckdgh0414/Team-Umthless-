@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rabbit : Entity
+public class Rabit : Entity
 {
 
     private float _changingPrees;

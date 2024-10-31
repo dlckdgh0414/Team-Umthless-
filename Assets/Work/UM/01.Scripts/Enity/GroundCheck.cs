@@ -9,11 +9,6 @@ public class GroundCheck : MonoBehaviour, IEntityComponent
 
     [field : SerializeField]
     public bool IsGround { get; private set; }
-
-    private void Update()
-    {
-        CheckGround();
-    }
     public void CheckGround()
     {
         Collider2D groundCollider = Physics2D.OverlapBox(transform.position, _size, 0, _whatIsGround);

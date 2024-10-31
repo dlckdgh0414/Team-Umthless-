@@ -6,20 +6,33 @@ public class VisibleWall : MonoBehaviour
 {
     private SpriteRenderer _sprite;
 
-    public UnityEvent OnVisibleWall;
+    public NotifyValue<bool> IsVisible = new NotifyValue<bool>();
 
     private void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        _sprite.material.DOFade(0, 0.01F);
+        IsVisible.OnValueChanged += InvisibleingWall;
     }
 
-    public void VisibleingWall()
+    private void Update()
     {
-        _sprite.material.DOFade(1, 1.5f);
+        IsVisible.Value = false;
+    }
+
+    public void InvisibleingWall(bool prev, bool next)
+    {
+        if(!next)
+        _sprite.DOFade(0, 0.01F);
+        else
+            _sprite.DOFade(1, 1.5f);
+    }
+
+    private void OnDisable()
+    {
+        IsVisible.OnValueChanged -= InvisibleingWall;
     }
 }

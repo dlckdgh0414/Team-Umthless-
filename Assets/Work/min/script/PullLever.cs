@@ -5,13 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PullLever : MonoBehaviour
 {
-    [SerializeField] private Transform _playerTrm;
+    private Transform _playerTrm;
     public event Action<bool> OnPressedEvent;
     private Animator _animator;
 
     private void Awake()
     {
         _animator = transform.Find("Visual").GetComponent<Animator>();
+        _playerTrm = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()

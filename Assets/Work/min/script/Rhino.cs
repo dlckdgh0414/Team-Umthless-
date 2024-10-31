@@ -1,27 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rhino : Entity
 {
-    private Player _player;
-    private float _dashPower = 15f;
+    private float _dashPower = 12f;
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+    public bool _isDashing;
+    private float _currentTime, _dashTime = 1f;
 
     public override void HackingEnter(Player player)
     {
         _player = player;
         _player.InputComp.OnJumpEvent += Jump;
+        _player.InputComp.OnSkillEvent += Dash;
+
+        _canMove = true;
+        Debug.Log("ÀÔ°¶");
+    }
+
+    private void Update()
+    {
+        if (_isDashing)
+        {
+            _currentTime += Time.deltaTime;
+
+            if(_currentTime > _dashTime)
+            {
+                _canMove = true;
+                _isDashing = false;
+                _currentTime = 0f;
+            }
+        }
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-
     }
 
     public override void HackingExit()
@@ -33,6 +49,13 @@ public class Rhino : Entity
     private void Dash()
     {
         _canMove = false;
-        RigidCompo.velocity = new Vector2(_dashPower, RigidCompo.velocity.y) ;
+        _isDashing = true;
+        RigidCompo.AddForce(new Vector2(_renderer.FacingDirection * _dashPower,
+            RigidCompo.velocity.y), ForceMode2D.Impulse);
+    }
+
+    public void ResetVelocity()
+    {
+        RigidCompo.velocity = Vector2.zero;
     }
 }

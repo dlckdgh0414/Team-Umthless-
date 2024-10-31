@@ -7,7 +7,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 {
     protected Dictionary<Type, IEntityComponent> _components;
 
-    public  Rigidbody2D RigidCompo { get; protected set; }
+    public Rigidbody2D RigidCompo { get; protected set; }
     protected AnimalsAnim AnimCompo;
     protected Player _player;
 
@@ -22,7 +22,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
         RigidCompo = GetComponent<Rigidbody2D>();
         AnimCompo = GetComponentInChildren<AnimalsAnim>();
 
-        _canMove = false;   
+        _canMove = false;
 
         _components = new Dictionary<Type, IEntityComponent>();
         GetComponentsInChildren<IEntityComponent>(true).ToList()
@@ -55,8 +55,8 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 
     protected virtual void Jump()
     {
-        if(CheckCompo.IsGround)
-        RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
+        if (CheckCompo.IsGround)
+            RigidCompo.AddForce(Vector2.up * _moveData.jumpPower, ForceMode2D.Impulse);
     }
 
     public abstract void HackingEnter(Player player);

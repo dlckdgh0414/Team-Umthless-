@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
-using DG.Tweening;
 
 public class BrokeningWall : MonoBehaviour
 {
@@ -18,7 +15,7 @@ public class BrokeningWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (collision.gameObject.TryGetComponent<Rhino>(out Rhino rhino))
             {
@@ -34,7 +31,7 @@ public class BrokeningWall : MonoBehaviour
     public void BrokeningObj()
     {
         _sprite.DOFade(0, 1.5f);
-        
+
         OnGrithchEvent?.Invoke();
     }
 }

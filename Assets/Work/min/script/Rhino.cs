@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Rhino : Entity
 {
@@ -28,7 +25,7 @@ public class Rhino : Entity
         {
             _currentTime += Time.deltaTime;
 
-            if(_currentTime > _dashTime)
+            if (_currentTime > _dashTime)
             {
                 _canMove = true;
                 _isDashing = false;
@@ -47,7 +44,7 @@ public class Rhino : Entity
     protected override void Move(Vector2 dir)
     {
         base.Move(dir);
-        if(dir.x != 0)
+        if (dir.x != 0)
         {
             AnimCompo.SetParam(moveType, true);
         }
@@ -59,8 +56,8 @@ public class Rhino : Entity
 
     public override void HackingExit()
     {
-        _player = null;
         _player.InputComp.OnJumpEvent -= Jump;
+        _player = null;
     }
 
     private void Dash()

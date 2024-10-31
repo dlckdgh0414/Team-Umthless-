@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ContainerMove : MonoBehaviour
@@ -7,7 +5,7 @@ public class ContainerMove : MonoBehaviour
 
     private Rigidbody2D _rbCompo;
 
-   [SerializeField] private AnimalDataSO _move;
+    [SerializeField] private AnimalDataSO _move;
 
     private void Awake()
     {

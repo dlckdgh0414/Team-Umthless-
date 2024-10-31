@@ -8,6 +8,7 @@ public class VisibleWall : MonoBehaviour
 
     public NotifyValue<bool> IsVisible = new NotifyValue<bool>();
 
+    [SerializeField] private float _radius;
     private void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
@@ -18,23 +19,22 @@ public class VisibleWall : MonoBehaviour
         IsVisible.OnValueChanged += InvisibleingWall;
     }
 
-    private void Update()
-    {
-        IsVisible.Value = false;
-    }
-
     public void InvisibleingWall(bool prev, bool next)
     {
-        if(!next)
-        _sprite.DOFade(0, 0.01F);
-        else
+        if (next)
             _sprite.DOFade(1, 1.5f);
-
-        Debug.Log(next);
+        else
+            _sprite.DOFade(0, 1.5F);
     }
 
     private void OnDisable()
     {
         IsVisible.OnValueChanged -= InvisibleingWall;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Bat : Entity
@@ -9,7 +10,14 @@ public class Bat : Entity
     [SerializeField] private float _radius;
     [SerializeField] private LayerMask _whatIsInvisible;
 
+    private List<VisibleWall> _visibleWalls;
     private Collider2D[] _colliders;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _visibleWalls = FindObjectsOfType<VisibleWall>().ToList();
+    }
 
     public override void HackingEnter(Player player)
     {
@@ -29,14 +37,15 @@ public class Bat : Entity
     {
         _colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _whatIsInvisible);
 
-        Debug.Log(_colliders.Length);
-
-        foreach (Collider2D collider in _colliders)
+        foreach (VisibleWall wall in _visibleWalls)
         {
-            if (collider.gameObject.TryGetComponent(out VisibleWall visible))
+            if (Array.Exists(_colliders, collider => collider.gameObject == wall.gameObject))
             {
-                visible.IsVisible.Value = true;
+
+                wall.IsVisible.Value = true;
             }
+            else
+                wall.IsVisible.Value = false;
         }
     }
 

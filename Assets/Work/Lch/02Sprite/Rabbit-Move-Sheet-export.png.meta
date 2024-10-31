@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38514bb1e7c648b4390c88f1aee842e2
+guid: f8ef21b91f2919a43bd97d4064693837
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rabbit-Move-Sheet_0
+      name: Rabbit-Move-Sheet-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6c1dad7033dd454aa0756367062c31e
-      internalID: 1753577732
+      spriteID: 68cce3e785427a64b891eda2efc3508e
+      internalID: 418551407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabbit-Move-Sheet_1
+      name: Rabbit-Move-Sheet-export_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51ccee545e65baa46b3f0c11799d33ca
-      internalID: -744835907
+      spriteID: 0493c31ec4760564689b2200b4f480ec
+      internalID: -1525560551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabbit-Move-Sheet_2
+      name: Rabbit-Move-Sheet-export_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb778a6108ef85a45a09d26e4ad09f52
-      internalID: 1236823598
+      spriteID: baf10ba0cf419e841bfb59e8754651fb
+      internalID: -1473447015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabbit-Move-Sheet_3
+      name: Rabbit-Move-Sheet-export_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1db11ee12f54224c942dcad796bd4c2
-      internalID: 142185260
+      spriteID: 394df7f38a1eafb4db79443e34afff8d
+      internalID: -265202347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabbit-Move-Sheet_4
+      name: Rabbit-Move-Sheet-export_4
       rect:
         serializedVersion: 2
         x: 128
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7b4396daca76b6449f8ad9901d91994
-      internalID: 160314029
+      spriteID: 154107a1085a2024cbac8226ffb28671
+      internalID: 1464239870
       vertices: []
       indices: 
       edges: []
@@ -238,11 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Rabbit-Move-Sheet_0: 1753577732
-      Rabbit-Move-Sheet_1: -744835907
-      Rabbit-Move-Sheet_2: 1236823598
-      Rabbit-Move-Sheet_3: 142185260
-      Rabbit-Move-Sheet_4: 160314029
+      Rabbit-Move-Sheet-export_0: 418551407
+      Rabbit-Move-Sheet-export_1: -1525560551
+      Rabbit-Move-Sheet-export_2: -1473447015
+      Rabbit-Move-Sheet-export_3: -265202347
+      Rabbit-Move-Sheet-export_4: 1464239870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

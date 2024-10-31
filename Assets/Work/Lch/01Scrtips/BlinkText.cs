@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 
@@ -29,5 +30,10 @@ public class BlinkText : MonoBehaviour
 
             yield return new WaitForSeconds(0.3f);
         }
+    }
+
+    public void Onclik()
+    {
+        SceneManager.LoadScene(1);
     }
 }

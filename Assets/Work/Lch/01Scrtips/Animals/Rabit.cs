@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Rabit : Entity
 {
-
-    private float _changingPrees;
+    [SerializeField] private AnimTypeSO _moveType;
+    private float jumpPower;
+    private bool IsCharging;
 
     protected override void Awake()
     {
@@ -13,39 +15,75 @@ public class Rabit : Entity
         
     }
 
+    private void Start()
+    {
+        jumpPower = _moveData.jumpPower;
+    }
+
     public override void HackingEnter(Player player)
     {
         _player = player;
-        _player.InputComp.OnJumpChargingEvent += OnJumpChanging;
+        _player.InputComp.OnJumpChargingEvent += Jump;
         _canMove = true;
+    }
+
+    private void Update()
+    {
+        if (IsCharging)
+        {
+            _canMove = false;
+            Move(Vector2.zero);
+            ChargingJump();
+        }
+        else
+        {
+            _canMove = true;
+            jumpPower = _moveData.jumpPower;
+        }
     }
 
     public override void HackingExit()
     {
         _player = null;
-        _player.InputComp.OnJumpChargingEvent -= OnJumpChanging;
+        _player.InputComp.OnJumpChargingEvent -= Jump;
         _canMove = false;
     }
 
-    private void OnJumpChanging(bool isTrue)
+    private void Jump(bool isCharging)
     {
-        if (isTrue)
+        IsCharging = isCharging;
+        if (!isCharging)
         {
-           while(_changingPrees > 7)
-            {
-                _changingPrees += 0.5f;
-            }
-        }
-        else
-        {
-            _changingPrees = 0;
+            RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            jumpPower = _moveData.jumpPower;
         }
     }
 
-    protected override void Jump()
+    protected override void Move(Vector2 dir)
     {
-        base.Jump();
-        float jumpPower = _moveData.jumpPower + _changingPrees;
-        RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        base.Move(dir);
+        if(dir.x != 0)
+        {
+            AnimCompo.SetParam(_moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType, false);
+        }
+    }
+
+    private void ChargingJump()
+    {
+          StartCoroutine(ChargingCoroutine());
+          if (jumpPower > 10)
+          {
+              jumpPower = 10;
+          }
+    }
+
+    private IEnumerator ChargingCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        jumpPower += 0.5f;
     }
 }

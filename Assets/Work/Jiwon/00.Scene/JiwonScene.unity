@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canMove: 0
   _moveData: {fileID: 11400000, guid: a62d78ce24dd10e48ba44bc3158de12d, type: 2}
+  animMove: {fileID: 11400000, guid: 65688926a10b7f84695b6b38a08798db, type: 2}
   firePos: {fileID: 1988591858}
   buillet: {fileID: 1512189109}
   builletSpeed: 10

@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        _doorSprite = GetComponent<SpriteRenderer>();
+        _doorSprite = GameObject.Find("Visual").GetComponent<SpriteRenderer>();
 
         _pressButton.OnPressedEvent += HandleDoorChange;
     }
@@ -46,10 +46,11 @@ public class Door : MonoBehaviour
     {
         if (_isOpened == isOpened) return;
 
+        DOVirtual.DelayedCall(0.25f, () => 
         _doorSprite.DOFade(0, 0.5f).OnComplete(() =>
         {
             gameObject.SetActive(isOpened);
-        });
+        }));
 
         if (_isOpened && _hasTime)
             _isTimerStart = true;

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69dad73c3d05b7d4ea61db0fc27df2cc, type: 3}
-  m_Name: Mouse
+  m_Script: {fileID: 11500000, guid: bc78e7e72a8ec7543bbe6cee2dad49c1, type: 3}
+  m_Name: InputReader
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  jumpPower: 2

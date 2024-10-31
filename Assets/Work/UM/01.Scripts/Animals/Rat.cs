@@ -9,5 +9,6 @@ public class Rat : Entity
     public override void HackingExit()
     {
         _player.InputComp.OnJumpEvent -= Jump;
+        _player = null;
     }
 }

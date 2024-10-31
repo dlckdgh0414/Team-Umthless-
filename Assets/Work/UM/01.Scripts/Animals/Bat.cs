@@ -11,13 +11,6 @@ public class Bat : Entity
 
     private Collider2D[] _colliders;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        RigidCompo.gravityScale = 0;
-    }
-
     public override void HackingEnter(Player player)
     {
         _player = player;
@@ -35,7 +28,9 @@ public class Bat : Entity
     private void CheckInvisibleWall()
     {
         _colliders = Physics2D.OverlapCircleAll(transform.position, _radius, _whatIsInvisible);
-        
+
+        Debug.Log(_colliders.Length);
+
         foreach (Collider2D collider in _colliders)
         {
             if (collider.gameObject.TryGetComponent(out VisibleWall visible))
@@ -53,10 +48,6 @@ public class Bat : Entity
         {
             RigidCompo.AddForce(Vector2.up * _flyPower, ForceMode2D.Impulse);
         }
-        else
-        {
-            RigidCompo.AddForce(Vector2.down * _flyPower * 1.2f, ForceMode2D.Impulse);
-        }
     }
 
     public override void HackingExit()
@@ -64,5 +55,11 @@ public class Bat : Entity
         _canMove = false;
         _player.InputComp.OnJumpEvent -= Jump;
         _player = null;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }

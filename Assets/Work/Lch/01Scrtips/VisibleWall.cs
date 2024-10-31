@@ -29,6 +29,8 @@ public class VisibleWall : MonoBehaviour
         _sprite.DOFade(0, 0.01F);
         else
             _sprite.DOFade(1, 1.5f);
+
+        Debug.Log(next);
     }
 
     private void OnDisable()

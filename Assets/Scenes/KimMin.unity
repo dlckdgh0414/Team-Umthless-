@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1315838863948590965, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.9
+      value: -8.2
       objectReference: {fileID: 0}
     - target: {fileID: 1315838863948590965, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -307,54 +307,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4113374852041867378, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113374852041867378, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: m_Constraints
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113374852041867378, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4563343700241841044, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
       propertyPath: m_Name
       value: Pressure plate
       objectReference: {fileID: 0}
     - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
       propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1353070358}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleDoorChange
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Door, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098193988173221429, guid: ca4546d7ce7ed254198a5f2cfcd7704f, type: 3}
-      propertyPath: OnPressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

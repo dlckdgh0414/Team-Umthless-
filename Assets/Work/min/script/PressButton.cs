@@ -1,35 +1,40 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class PressButton : MonoBehaviour
 {
-    public event Action OnPressedEvent;
+    [SerializeField] private Transform _playerTrm;
+    public event Action<bool> OnPressedEvent;
     private Animator _animator;
+    private bool _isPressed;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    private void OnButtonPressed()
+    private void Update()
     {
-        _animator.SetBool("Pressed", true);
-        OnPressedEvent?.Invoke();
+        CheckButtonPress();
     }
 
-    private void OnButtonExit()
+    private void CheckButtonPress()
     {
-        _animator.SetBool("Pressed", false);
+        if ((_playerTrm.position - transform.position).magnitude < 1)
+        {
+            if (Keyboard.current.fKey.wasPressedThisFrame)
+            {
+                ButtonStatus(_isPressed);
+            }
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void ButtonStatus(bool isPressed)
     {
-        OnButtonPressed();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        OnButtonExit();
+        _isPressed = isPressed;
+        _animator.SetBool("Pressed", isPressed);
+        OnPressedEvent?.Invoke(isPressed);
     }
 }

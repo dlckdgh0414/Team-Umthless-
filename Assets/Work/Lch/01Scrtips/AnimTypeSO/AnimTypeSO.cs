@@ -8,7 +8,7 @@ public enum AnimParm
 }
 public enum Animals
 {
-    None, Rabit,Cat,Rat,Iizard,Chicken,Bunny,Rhino,Elephant,Bat,Ape,Human,Spider
+    None, Rabit,Cat,Rat,Iizard,Chicken,Rhino,Elephant,Bat,Ape,Human,Spider
 }
 [CreateAssetMenu(menuName = "Anim/SO/AnimType")]
 public class AnimTypeSO : ScriptableObject

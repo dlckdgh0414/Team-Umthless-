@@ -678,6 +678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputComp>k__BackingField: {fileID: 11400000, guid: 9b99c6f6d0b4aac41bc515aa34a40e41, type: 2}
   initEntity: {fileID: 1966002583}
+  isSkill: 0
   maxHackingCharge: 2
   OnHackingEvent:
     m_PersistentCalls:

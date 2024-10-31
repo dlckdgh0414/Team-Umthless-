@@ -22,7 +22,7 @@ public class Bat : Entity
 
     private void CheckInvisibleWall()
     {
-
+        
     }
 
     private void Fly(bool isFly)

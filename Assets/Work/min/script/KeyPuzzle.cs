@@ -1,6 +1,6 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.InputSystem;
 
 public class KeyPuzzle : MonoBehaviour

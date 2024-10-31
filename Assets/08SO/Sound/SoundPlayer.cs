@@ -6,18 +6,17 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(AudioSource))]
 public class SoundPlayer : MonoBehaviour, IPoolable
 {
-    [SerializeField] private AudioMixerGroup _sfxGroup, _musicGroup;
+    [SerializeField] private AudioMixerGroup _sfxGroup, _BGM;
     [SerializeField] private string _poolName;
     [SerializeField] private PoolTypeSO _poolType;
     private Pool _myPool;
-
-    public GameObject ObjectPrefab => gameObject;
 
     public PoolTypeSO PoolType => _poolType;
 
     public GameObject GameObject => gameObject;
 
     private AudioSource _audioSource;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -32,7 +31,7 @@ public class SoundPlayer : MonoBehaviour, IPoolable
         }
         else if (data.audioType == AudioType.BGM)
         {
-            _audioSource.outputAudioMixerGroup = _musicGroup;
+            _audioSource.outputAudioMixerGroup = _BGM;
         }
 
         _audioSource.volume = data.volume;

@@ -1,9 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
-using GGMPool;
 using UnityEngine.Events;
-using System.Collections.Generic;
-using System;
 
 public class Door : MonoBehaviour
 {
@@ -55,7 +52,7 @@ public class Door : MonoBehaviour
         if (_pressButton != null)
             _pressButton.ButtonStatus(false);
 
-        DOVirtual.DelayedCall(0.25f, () => 
+        DOVirtual.DelayedCall(0.25f, () =>
         _doorSprite.DOFade(1, 0.5f).OnComplete(() =>
         {
             gameObject.SetActive(true);
@@ -70,7 +67,7 @@ public class Door : MonoBehaviour
     {
         if (_isOpened == isOpened) return;
 
-        DOVirtual.DelayedCall(0.25f, () => 
+        DOVirtual.DelayedCall(0.25f, () =>
         _doorSprite.DOFade(0, 0.5f).OnComplete(() =>
         {
             gameObject.SetActive(isOpened);

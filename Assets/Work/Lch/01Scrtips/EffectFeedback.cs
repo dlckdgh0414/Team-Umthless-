@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using GGMPool;
+using UnityEngine;
 
 public class EffectFeedback : Feedback
 {
@@ -20,7 +18,7 @@ public class EffectFeedback : Feedback
 
     public override void StopFeedback()
     {
-       
+
     }
 
     private void OnDrawGizmos()

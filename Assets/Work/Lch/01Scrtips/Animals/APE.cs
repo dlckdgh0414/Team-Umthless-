@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +11,7 @@ public class APE : Entity
     [SerializeField] private AnimTypeSO _holdType;
     [SerializeField] private AnimTypeSO _holdMoveType;
 
-    [ field : SerializeField] public Transform _holdTrm;
+    [field: SerializeField] public Transform _holdTrm;
     [SerializeField] private Vector2 _checkSize;
     [SerializeField] private LayerMask _whatIsHoldObj;
 
@@ -34,15 +31,15 @@ public class APE : Entity
 
     private bool HoldCheck()
     {
-        bool holdObj = Physics2D.OverlapBox(transform.position, _checkSize, 0,_whatIsHoldObj);
+        bool holdObj = Physics2D.OverlapBox(transform.position, _checkSize, 0, _whatIsHoldObj);
         return holdObj;
     }
 
     protected override void Move(Vector2 dir)
     {
-        
+
         base.Move(dir);
-        if(dir.x != 0)
+        if (dir.x != 0)
         {
             AnimCompo.SetParam(_moveType, true);
             if (isHold)
@@ -54,7 +51,7 @@ public class APE : Entity
             if (isHold)
                 AnimCompo.SetParam(_holdMoveType, false);
         }
-       
+
     }
 
     private void Update()
@@ -64,12 +61,12 @@ public class APE : Entity
 
     private void HoldObj()
     {
-       
-        if(HoldCheck())
+
+        if (HoldCheck())
         {
             AnimCompo.SetParam(_holdType, true);
             OnHoldingEvent?.Invoke();
-           
+
         }
         else
         {

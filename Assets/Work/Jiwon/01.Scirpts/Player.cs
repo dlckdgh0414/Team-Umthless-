@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [field : SerializeField] public InputReader InputComp { get; private set; }
     [SerializeField] private Entity initEntity;
     public CinemachineVirtualCamera VirtualCamera { get; private set; }
+
+    public bool isSkill = false;
     
     [Header("HackingSetting")]
     public float maxHackingCharge;

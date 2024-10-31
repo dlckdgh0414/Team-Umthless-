@@ -8,6 +8,7 @@ public class APE : Entity
 {
 
     public UnityEvent OnHoldingEvent;
+    public UnityEvent OnThrowingHoldingEvent;
 
     [SerializeField] private AnimTypeSO _moveType;
     [SerializeField] private AnimTypeSO _holdType;
@@ -72,6 +73,7 @@ public class APE : Entity
         }
         else
         {
+            OnThrowingHoldingEvent?.Invoke();
             isHold = false;
             AnimCompo.SetParam(_holdType, false);
         }

@@ -13,16 +13,17 @@ public class HoldObj : MonoBehaviour
         _rbCompo = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void Throwing()
     {
-        if (_ape.isHold)
-        {
-            _rbCompo.velocity = _ape
-        }
+        _rbCompo.bodyType = RigidbodyType2D.Dynamic;
+        transform.parent = null;
+        _rbCompo.AddForce(Vector2.right * 3f, ForceMode2D.Impulse);
     }
 
     public void HoidingObj()
     {
+        _rbCompo.bodyType = RigidbodyType2D.Kinematic;
+        transform.parent = _ape.transform;
         transform.position = _ape._holdTrm.position;
         _ape.isHold = true;
     }

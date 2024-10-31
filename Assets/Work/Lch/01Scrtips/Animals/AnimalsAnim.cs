@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimalsAnim : MonoBehaviour
 {
-	private Animator _animator;
+    private Animator _animator;
     private Player _animals;
 
     private void Awake()

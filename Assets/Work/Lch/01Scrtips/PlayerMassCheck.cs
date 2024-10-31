@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,9 +16,9 @@ public class PlayerMassCheck : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if(collision.gameObject.TryGetComponent(out Rigidbody2D collisionRbcom))
+            if (collision.gameObject.TryGetComponent(out Rigidbody2D collisionRbcom))
             {
-                if(collisionRbcom.mass > _rbCompo.mass)
+                if (collisionRbcom.mass > _rbCompo.mass)
                 {
                     OnBrokenEvent?.Invoke();
                 }

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HoldObj : MonoBehaviour
 {
-	private APE _ape;
+    private APE _ape;
     private Rigidbody2D _rbCompo;
 
     private void Awake()

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -31,7 +28,7 @@ public class HackingUI : MonoBehaviour
         {
             _hacking.enabled = true;
             _gayg.enabled = true;
-            
+
             transform.position = Mouse.current.position.ReadValue();
             _gayg.fillAmount = next / 2;
         }

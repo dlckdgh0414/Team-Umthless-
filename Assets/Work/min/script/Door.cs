@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
     [SerializeField] private float _currentTime, _time;
     [SerializeField] private PressButton _pressButton;
 
+    private BoxCollider2D _boxCollider;
     private SpriteRenderer _doorSprite;
 
     private bool _isOpened;
@@ -20,6 +21,7 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         _doorSprite = transform.Find("Visual").GetComponent<SpriteRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
 
         _pressButton.OnPressedEvent += HandleDoorChange;
     }
@@ -52,6 +54,7 @@ public class Door : MonoBehaviour
         _doorSprite.DOFade(0, 0.5f).OnComplete(() =>
         {
             gameObject.SetActive(isOpened);
+            _boxCollider.enabled = !isOpened;
         }));
 
         if (_isOpened && _hasTime)

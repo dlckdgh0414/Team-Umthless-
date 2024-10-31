@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Rhino : Entity
 {
+
+    [SerializeField] private AnimTypeSO moveType;
+    [SerializeField] private AnimTypeSO jumpType;
+
     private float _dashPower = 12f;
 
     public bool _isDashing;
@@ -33,11 +37,32 @@ public class Rhino : Entity
                 _currentTime = 0f;
             }
         }
+
+        //if(_player.)
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    protected override void Move(Vector2 dir)
+    {
+        base.Move(dir);
+        if(dir.x != 0)
+        {
+            AnimCompo.SetParam(moveType, true);
+        }
+        else
+        {
+            AnimCompo.SetParam(moveType, false);
+        }
+    }
+
+    protected override void Jump()
+    {
+        base.Jump();
+        AnimCompo.SetParam(jumpType, false);
     }
 
     public override void HackingExit()

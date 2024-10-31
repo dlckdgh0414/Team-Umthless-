@@ -11,13 +11,13 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected Player _player;
 
     [HideInInspector]
-    public bool _canMove;
+    protected bool _canMove;
 
     protected virtual void Awake()
     {
         RigidCompo = GetComponent<Rigidbody2D>();
 
-        _canMove = false;
+        _canMove = false;   
 
         _components = new Dictionary<Type, IEntityComponent>();
         GetComponentsInChildren<IEntityComponent>(true).ToList()

@@ -8,11 +8,10 @@ public class PressButton : MonoBehaviour
     [SerializeField] private Transform _playerTrm;
     public event Action<bool> OnPressedEvent;
     private Animator _animator;
-    private bool _isPressed;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -24,17 +23,16 @@ public class PressButton : MonoBehaviour
     {
         if ((_playerTrm.position - transform.position).magnitude < 1)
         {
-            if (Keyboard.current.fKey.wasPressedThisFrame)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                ButtonStatus(_isPressed);
+                ButtonStatus(true);
             }
         }
     }
 
-    private void ButtonStatus(bool isPressed)
+    public void ButtonStatus(bool isPressed)
     {
-        _isPressed = isPressed;
-        _animator.SetBool("Pressed", isPressed);
+        //_animator.SetBool("Pressed", isPressed);
         OnPressedEvent?.Invoke(isPressed);
     }
 }

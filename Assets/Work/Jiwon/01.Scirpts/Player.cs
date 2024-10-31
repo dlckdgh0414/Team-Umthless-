@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
     private void Hacking()
     {
         if (_nextEntity == null) return;
+        if (_currentEntity == _nextEntity) return;
         
         _hackingCharging.Value = 0;
         _isHacking = false;

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
@@ -6,9 +5,9 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [field : SerializeField] public InputReader InputComp { get; private set; }
-
-    private CinemachineVirtualCamera _virtualCamera;
-
+    [SerializeField] private Entity initEntity;
+    public CinemachineVirtualCamera VirtualCamera { get; private set; }
+    
     [Header("HackingSetting")]
     public float maxHackingCharge;
     public UnityEvent OnHackingEvent;
@@ -25,9 +24,18 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _hackingCharging = new NotifyValue<float>();
-        _virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        VirtualCamera = GetComponent<CinemachineVirtualCamera>();
 
         _hackingCharging.OnValueChanged += HandleHackingChanged;
+
+        Initialized();
+    }
+
+    public void Initialized()
+    {
+        _currentEntity = initEntity;
+        _currentEntity.HackingEnter(this);
+        VirtualCamera.Follow = _currentEntity.transform;
     }
 
     private void OnDisable()
@@ -74,6 +82,7 @@ public class Player : MonoBehaviour
     private void Hacking()
     {
         if (_nextEntity == null) return;
+        if (_currentEntity == _nextEntity) return;
         
         _hackingCharging.Value = 0;
         _isHacking = false;
@@ -83,7 +92,7 @@ public class Player : MonoBehaviour
         _currentEntity.HackingEnter(this);
         _nextEntity = null;
         
-        _virtualCamera.Follow = _currentEntity.transform;
+        VirtualCamera.Follow = _currentEntity.transform;
         OnHackingEvent?.Invoke();
     }
 }

@@ -7,7 +7,6 @@ using System;
 
 public class Pressureplate : MonoBehaviour
 {
-
     public UnityEvent OnPressEvent;
 
     private void OnCollisionEnter2D(Collision2D collision)

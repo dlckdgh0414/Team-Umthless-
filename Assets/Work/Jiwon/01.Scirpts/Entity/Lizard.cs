@@ -10,6 +10,8 @@ public class Lizard : Entity
     
     private WallCheck _wallCheck;
     private bool _isWallRen;
+
+    private float _wallMoveDir;
     
     protected override void Awake()
     {
@@ -29,7 +31,7 @@ public class Lizard : Entity
     
     private void HandleWallRunEvent()
     {
-        if (_isWallRen)
+        if (!_isWallRen)
         {
             if (_wallCheck.IsWallCheck())
             {
@@ -37,7 +39,37 @@ public class Lizard : Entity
                 
                 RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
                 transform.eulerAngles = new Vector3(0, 0, wallDir);
+                _canMove = false;
+                _isWallRen = true;
+                RigidCompo.gravityScale = 0;
             }
+            else if (!_wallCheck.IsWallCheck())
+            {
+                int wallDir = _wallCheck.isRightWall ? 90 : -90;
+                RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
+            }
+        }
+        else if (_isWallRen)
+        {
+            RigidCompo.gravityScale = 1;
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            _canMove = true;
+            _isWallRen = false;
+        }
+    }
+
+    private void WallMove(Vector2 dir)
+    {
+        RigidCompo.velocity = new Vector2(RigidCompo.velocity.x, dir.y * _moveData.moveSpeed);
+    }
+    
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (_isWallRen)
+        {
+            WallMove(_player.InputComp.MoveDir);
+            _renderer.FlipController(-_player.InputComp.MoveDir.y);
         }
     }
 

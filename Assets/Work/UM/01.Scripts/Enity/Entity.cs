@@ -8,6 +8,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected Dictionary<Type, IEntityComponent> _components;
 
     protected Rigidbody2D RigidCompo;
+    protected AnimalsAnim AnimCompo;
     protected Player _player;
 
     protected EntityRenderer _renderer;
@@ -18,6 +19,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected virtual void Awake()
     {
         RigidCompo = GetComponent<Rigidbody2D>();
+        AnimCompo = GetComponentInChildren<AnimalsAnim>();
 
         _canMove = false;   
 

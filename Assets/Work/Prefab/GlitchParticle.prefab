@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 442531855741084467}
   - component: {fileID: 8178518381260558866}
   - component: {fileID: 9189980160232595194}
+  - component: {fileID: 5811729735563210405}
   m_Layer: 0
   m_Name: GlitchParticle
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4247054564093355107}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.3988335, y: -3.4546063, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,7 +51,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4830,3 +4831,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5811729735563210405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247054564093355107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598a2d335ca99c746ba98c5b40082169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolType: {fileID: 11400000, guid: fea412e1c6e9e3d41b8b724973d9a79d, type: 2}
+  _particle: {fileID: 8178518381260558866}

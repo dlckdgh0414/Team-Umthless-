@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f045815d54932a429691eb793ad8783, type: 3}
-  m_Name: PoolManger
+  m_Script: {fileID: 11500000, guid: 69dad73c3d05b7d4ea61db0fc27df2cc, type: 3}
+  m_Name: Rabbit
   m_EditorClassIdentifier: 
-  poolingItemList:
-  - {fileID: 11400000, guid: e22653a2f7dc92246a6a95858075f2ae, type: 2}
-  _rootTrm: {fileID: 0}
+  moveSpeed: 8
+  jumpPower: 2

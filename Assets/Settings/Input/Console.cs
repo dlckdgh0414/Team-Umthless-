@@ -53,6 +53,15 @@ public partial class @Console: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hacking"",
+                    ""type"": ""Button"",
+                    ""id"": ""b883215d-317a-499f-9b7f-8e09783813c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @Console: IInputActionCollection2, IDisposable
                     ""action"": ""Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c272cff4-dade-4af6-b16a-99821ab760a5"",
+                    ""path"": ""<Rat>/rightButton"",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hacking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
         m_PlayerInput_Move = m_PlayerInput.FindAction("Move", throwIfNotFound: true);
         m_PlayerInput_Jump = m_PlayerInput.FindAction("Jump", throwIfNotFound: true);
         m_PlayerInput_Skill = m_PlayerInput.FindAction("Skill", throwIfNotFound: true);
+        m_PlayerInput_Hacking = m_PlayerInput.FindAction("Hacking", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_Move;
     private readonly InputAction m_PlayerInput_Jump;
     private readonly InputAction m_PlayerInput_Skill;
+    private readonly InputAction m_PlayerInput_Hacking;
     public struct PlayerInputActions
     {
         private @Console m_Wrapper;
@@ -214,6 +236,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerInput_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerInput_Jump;
         public InputAction @Skill => m_Wrapper.m_PlayerInput_Skill;
+        public InputAction @Hacking => m_Wrapper.m_PlayerInput_Hacking;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ public partial class @Console: IInputActionCollection2, IDisposable
             @Skill.started += instance.OnSkill;
             @Skill.performed += instance.OnSkill;
             @Skill.canceled += instance.OnSkill;
+            @Hacking.started += instance.OnHacking;
+            @Hacking.performed += instance.OnHacking;
+            @Hacking.canceled += instance.OnHacking;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -245,6 +271,9 @@ public partial class @Console: IInputActionCollection2, IDisposable
             @Skill.started -= instance.OnSkill;
             @Skill.performed -= instance.OnSkill;
             @Skill.canceled -= instance.OnSkill;
+            @Hacking.started -= instance.OnHacking;
+            @Hacking.performed -= instance.OnHacking;
+            @Hacking.canceled -= instance.OnHacking;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -267,5 +296,6 @@ public partial class @Console: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
+        void OnHacking(InputAction.CallbackContext context);
     }
 }

@@ -36,6 +36,7 @@ public class Door : MonoBehaviour
 
             if (_currentTime > _time)
             {
+                _currentTime = 0;
                 _isTimerStart = false;
                 _pressButton.ButtonStatus(false);
             }

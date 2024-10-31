@@ -10,11 +10,14 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected Rigidbody2D RigidCompo;
     protected Player _player;
 
-    public bool _canMove;
+    [HideInInspector]
+    protected bool _canMove;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         RigidCompo = GetComponent<Rigidbody2D>();
+
+        _canMove = false;   
 
         _components = new Dictionary<Type, IEntityComponent>();
         GetComponentsInChildren<IEntityComponent>(true).ToList()
@@ -33,7 +36,6 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     private void FixedUpdate()
     {
         if (!_canMove) return;
-
         Move(_player.InputComp.MoveDir);
     }
 

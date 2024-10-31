@@ -58,7 +58,7 @@ public class InputReader : ScriptableObject, IPlayerInputActions
     {
         if (context.started)
             OnHackingChargingEvent?.Invoke(true);
-        else if (context.performed)
+        else if (context.canceled)
             OnHackingChargingEvent?.Invoke(false);
         else if (context.canceled)
             OnHackingCanceleEvent?.Invoke();

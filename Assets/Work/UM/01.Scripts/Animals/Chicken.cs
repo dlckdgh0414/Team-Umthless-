@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Chicken : Entity
+{
+    [SerializeField] private float gravityValue = 0.5f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        RigidCompo.gravityScale = gravityValue;
+    }
+
+    public override void HackingEnter(Player player)
+    {
+        _player = player;
+        _player.InputComp.OnJumpEvent += Jump;
+    }
+
+    public override void HackingExit()
+    {
+        _player = null;
+        _player.InputComp.OnJumpEvent -= Jump;
+    }
+}

@@ -1,13 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 {
+    protected Dictionary<Type, IEntityComponent> _components;
+
     protected Rigidbody2D RigidCompo;
     protected AnimalsAnim AnimCompo;
     protected Player _player;
 
     protected EntityRenderer _renderer;
-    public  GroundCheck CheckCompo { get; protected set; }
+    public GroundCheck CheckCompo { get; protected set; }
 
     [SerializeField]
     protected bool _canMove;
@@ -17,10 +22,21 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
         RigidCompo = GetComponent<Rigidbody2D>();
         AnimCompo = GetComponentInChildren<AnimalsAnim>();
 
-        _canMove = false;
+        _canMove = false;   
+
+        _components = new Dictionary<Type, IEntityComponent>();
+        GetComponentsInChildren<IEntityComponent>(true).ToList()
+            .ForEach(component => _components.Add(component.GetType(), component));
+
+        InitComponents();
 
         _renderer = GetComponentInChildren<EntityRenderer>();
         CheckCompo = GetComponentInChildren<GroundCheck>();
+    }
+
+    private void InitComponents()
+    {
+        _components.Values.ToList().ForEach(component => component.Initialize(this));
     }
 
     [SerializeField] protected MovementDataSO _moveData;

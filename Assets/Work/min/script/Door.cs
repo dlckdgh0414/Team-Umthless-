@@ -3,6 +3,7 @@ using UnityEngine;
 using GGMPool;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System;
 
 public class Door : MonoBehaviour
 {
@@ -36,17 +37,33 @@ public class Door : MonoBehaviour
     {
         if (_isTimerStart)
         {
+            Debug.Log("sdf");
             _currentTime += Time.deltaTime;
 
             if (_currentTime > _time)
             {
-                _currentTime = 0;
-                _isTimerStart = false;
-
-                if (_pressButton != null)
-                    _pressButton.ButtonStatus(false);
+                OnTimerEnd();
             }
         }
+    }
+
+    private void OnTimerEnd()
+    {
+        _currentTime = 0;
+        _isTimerStart = false;
+
+        if (_pressButton != null)
+            _pressButton.ButtonStatus(false);
+
+        DOVirtual.DelayedCall(0.25f, () => 
+        _doorSprite.DOFade(1, 0.5f).OnComplete(() =>
+        {
+            gameObject.SetActive(true);
+            _boxCollider.enabled = true;
+            _isOpened = false;
+        }));
+
+        DoorChangeEvent?.Invoke();
     }
 
     public void HandleDoorChange(bool isOpened)
@@ -60,7 +77,7 @@ public class Door : MonoBehaviour
             _boxCollider.enabled = !isOpened;
         }));
 
-        if (_isOpened && _hasTime)
+        if (!_isOpened && _hasTime)
             _isTimerStart = true;
 
         _isOpened = isOpened;

@@ -59,19 +59,21 @@ public class Player : MonoBehaviour
             if (hit.collider.TryGetComponent(out Entity entity))
                 _nextEntity = entity;
         }
-        else if (!isHacking)
+        else if (!isHacking && _hackingCharging.Value < maxHackingCharge)
         {
             _isHacking = false;
             
             _hackingCharging.Value = 0;
-            _currentEntity = null;
+            _nextEntity = null;
         }
     }
 
     private void Update()
     {
         if (_isHacking)
+        {
             _hackingCharging.Value += Time.deltaTime;
+        }
     }
     
     private void HandleHackingChanged(float prev, float next)

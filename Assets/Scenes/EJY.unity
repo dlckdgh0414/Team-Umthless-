@@ -263,7 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e802987e69bf3d4c88fb5d49e363776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canMove: 0
   _moveData: {fileID: 11400000, guid: 39c051dbdff489c49abd9247ff5a55ce, type: 2}
   gravityValue: 0.5
 --- !u!1 &519420028

@@ -7,6 +7,8 @@ public class Lizard : Entity
 {
     [Header("LizardSetting")] 
     [SerializeField] private float lizardToWallJump;
+
+    [SerializeField] private AnimTypeSO _moveType;
     
     private WallCheck _wallCheck;
     private bool _isWallRen;
@@ -50,6 +52,19 @@ public class Lizard : Entity
         }
     }
 
+    protected override void Move(Vector2 dir)
+    {
+        base.Move(dir);
+        if (dir.x != 0)
+        {
+            AnimCompo.SetParam(_moveType,true);
+        }
+        else
+        {
+            AnimCompo.SetParam(_moveType,false);
+        }
+    }
+
     private void OffWallRun()
     {
         RigidCompo.gravityScale = 1;
@@ -62,6 +77,14 @@ public class Lizard : Entity
     private void WallMove(Vector2 dir)
     {
         RigidCompo.velocity = new Vector2(RigidCompo.velocity.x, dir.y * _moveData.moveSpeed);
+        if (dir.y != 0)
+        {
+            AnimCompo.SetParam(_moveType,true);
+        }
+        else if (dir.y == 0)
+        {
+            AnimCompo.SetParam(_moveType,false);
+        }
     }
 
     private void Update()

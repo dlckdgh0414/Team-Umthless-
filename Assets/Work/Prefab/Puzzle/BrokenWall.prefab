@@ -187,7 +187,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &4949438866900217233
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,3 +364,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolManager: {fileID: 11400000, guid: d37261864854dfa41af86456b43594a7, type: 2}
   _effectType: {fileID: 11400000, guid: fea412e1c6e9e3d41b8b724973d9a79d, type: 2}
+  _particleSize: {x: 0, y: 0}

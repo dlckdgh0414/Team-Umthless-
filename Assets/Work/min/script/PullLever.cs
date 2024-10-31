@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 
-public class PressButton : MonoBehaviour
+public class PullLever : MonoBehaviour
 {
     [SerializeField] private Transform _playerTrm;
     public event Action<bool> OnPressedEvent;
@@ -11,7 +11,7 @@ public class PressButton : MonoBehaviour
 
     private void Awake()
     {
-        //_animator = GetComponent<Animator>();
+        _animator = transform.Find("Visual").GetComponent<Animator>();
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class PressButton : MonoBehaviour
 
     public void ButtonStatus(bool isPressed)
     {
-        //_animator.SetBool("Pressed", isPressed);
+        _animator.SetBool("IsPulled", isPressed);
         OnPressedEvent?.Invoke(isPressed);
     }
 }

@@ -7,7 +7,6 @@ public class Rhino : Entity
 {
 
     [SerializeField] private AnimTypeSO moveType;
-    [SerializeField] private AnimTypeSO jumpType;
 
     private float _dashPower = 12f;
 
@@ -21,7 +20,6 @@ public class Rhino : Entity
         _player.InputComp.OnSkillEvent += Dash;
 
         _canMove = true;
-        Debug.Log("¿‘∞∂");
     }
 
     private void Update()
@@ -57,12 +55,6 @@ public class Rhino : Entity
         {
             AnimCompo.SetParam(moveType, false);
         }
-    }
-
-    protected override void Jump()
-    {
-        base.Jump();
-        AnimCompo.SetParam(jumpType, false);
     }
 
     public override void HackingExit()

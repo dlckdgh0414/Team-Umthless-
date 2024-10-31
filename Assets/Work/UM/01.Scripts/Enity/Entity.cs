@@ -7,7 +7,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 {
     protected Dictionary<Type, IEntityComponent> _components;
 
-    protected Rigidbody2D RigidCompo;
+    public  Rigidbody2D RigidCompo { get; protected set; }
     protected AnimalsAnim AnimCompo;
     protected Player _player;
 

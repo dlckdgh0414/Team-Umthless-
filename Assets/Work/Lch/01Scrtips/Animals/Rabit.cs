@@ -42,11 +42,6 @@ public class Rabit : Entity
             Move(Vector2.zero);
             ChargingJump();
         }
-        else
-        {
-            _canMove = true;
-            jumpPower = _moveData.jumpPower;
-        }
 
         if (RigidCompo.velocity.x != 0)
         {
@@ -73,8 +68,9 @@ public class Rabit : Entity
 
     public override void HackingExit()
     {
-        _player = null;
         _player.InputComp.OnJumpChargingEvent -= Jump;
+        _player = null;
+        
         _canMove = false;
     }
 
@@ -85,6 +81,12 @@ public class Rabit : Entity
         {
             AnimCompo.SetParam(_jumpType, true);
             RigidCompo.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            jumpPower = _moveData.jumpPower;
+        }
+       
+        if (!IsCharging)
+        {
+            _canMove = true;
             jumpPower = _moveData.jumpPower;
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum AnimParm
 {
-    None ,Idle, Move, Skill, Jump, Fail, dashCrash, push, climb, OnHand, OnHandMove
+    None ,Idle, Move, Skill, Jump, Fail, dashCrash, Push, climb, OnHand, OnHandMove
 }
 public enum Animals
 {

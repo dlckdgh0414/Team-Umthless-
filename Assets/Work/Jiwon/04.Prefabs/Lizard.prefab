@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCheckSize: {x: 0.1, y: 0.3}
-  wallRuningCheckSize: {x: 1, y: 0.2}
+  wallRuningCheckSize: {x: 1.5, y: 0.2}
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 896
   wallRuningPoint: {fileID: 2761096841802047550}
   isRightWall: 0
 --- !u!1 &5342826169972734391
@@ -173,9 +173,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 782805285
+  m_SortingLayer: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -540919856, guid: 58b4d2a2a3aff9f43848153b188dbf3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

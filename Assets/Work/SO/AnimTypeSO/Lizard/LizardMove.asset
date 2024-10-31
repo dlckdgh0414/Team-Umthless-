@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee09dc25356a394597f7b517d9c6f30, type: 3}
   m_Name: LizardMove
   m_EditorClassIdentifier: 
-  animType: 0
-  animals: 0
-  hashValue: 0
+  animType: 2
+  animals: 4
+  hashValue: -1014150989

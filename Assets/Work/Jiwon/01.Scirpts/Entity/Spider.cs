@@ -11,9 +11,9 @@ public class Spider : Entity
     private bool _isSwing;
     private bool _isFire;
 
-    [Header("SpiderSetting")] [SerializeField]
-    private Transform firePos;
-
+    [Header("SpiderSetting")] 
+    [SerializeField] private AnimTypeSO animMove;
+    [SerializeField] private Transform firePos;
     [SerializeField] private Transform buillet;
     [SerializeField] private float builletSpeed;
     [SerializeField] private LayerMask whatIsWall;
@@ -65,6 +65,11 @@ public class Spider : Entity
 
     private void Update()
     {
+        if (!_isSwing && Mathf.Abs(RigidCompo.velocity.x) > 0)
+            AnimCompo.SetParam(animMove, true);
+        else
+            AnimCompo.SetParam(animMove, false);
+        
         if (_isFire)
         {
             _builletTimer += Time.deltaTime;

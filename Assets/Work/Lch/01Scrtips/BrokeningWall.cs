@@ -19,7 +19,16 @@ public class BrokeningWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
-           BrokeningObj();
+        {
+            if (collision.gameObject.TryGetComponent<Rhino>(out Rhino rhino))
+            {
+                if (rhino._isDashing)
+                {
+                    rhino.ResetVelocity();
+                    BrokeningObj();
+                }
+            }
+        }
     }
 
     public void BrokeningObj()

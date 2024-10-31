@@ -12,6 +12,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
     protected Player _player;
 
     protected EntityRenderer _renderer;
+    public GroundCheck CheckCompo { get; protected set; }
 
     [SerializeField]
     protected bool _canMove;
@@ -30,6 +31,7 @@ public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
         InitComponents();
 
         _renderer = GetComponentInChildren<EntityRenderer>();
+        CheckCompo = GetComponentInChildren<GroundCheck>();
     }
 
     private void InitComponents()

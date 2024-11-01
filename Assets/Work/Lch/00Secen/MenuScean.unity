@@ -460,7 +460,7 @@ MonoBehaviour:
 
 
 
-    Clik To Start'
+    Click To Start'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b511a03a38315f418cb019b723d9e4c, type: 2}
   m_sharedMaterial: {fileID: -8467721235063959804, guid: 2b511a03a38315f418cb019b723d9e4c, type: 2}

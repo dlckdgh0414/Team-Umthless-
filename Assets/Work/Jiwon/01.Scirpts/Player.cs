@@ -2,6 +2,7 @@ using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     public NotifyValue<float> _hackingCharging;
     public float canHackingDistance;
     private bool _isHacking;
-    private Entity _currentEntity;
+    public Entity currentEntity;
     private Entity _nextEntity;
     [SerializeField] private HackingUI hackingUI;
 
@@ -42,10 +43,10 @@ public class Player : MonoBehaviour
 
     public void Initialized()
     {
-        _currentEntity = initEntity;
-        _currentEntity.HackingEnter(this);
-        VirtualCamera.Follow = _currentEntity.transform;
-        DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, _currentEntity._moveData.camFov, 1f);
+        currentEntity = initEntity;
+        currentEntity.HackingEnter(this);
+        VirtualCamera.Follow = currentEntity.transform;
+        DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, currentEntity._moveData.camFov, 1f);
     }
 
     private void OnDisable()
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out Entity entity))
             {
-                if (Vector3.Distance(_currentEntity.transform.position, entity.transform.position) <=
+                if (Vector3.Distance(currentEntity.transform.position, entity.transform.position) <=
                     canHackingDistance)
                 {
                     _nextEntity = entity;
@@ -118,27 +119,27 @@ public class Player : MonoBehaviour
     {
         if (next > maxHackingCharge)
         {
-            Hacking();
+            Hacking(_nextEntity);
         }
     }
 
-    private void Hacking()
+    public void Hacking(Entity newEntity)
     {
-        if (_nextEntity == null) return;
-        if (_currentEntity == _nextEntity) return;
+        if (newEntity == null) return;
+        if (currentEntity == newEntity) return;
 
         hackingUI.HackingCansle();
 
         _hackingCharging.Value = 0;
         _isHacking = false;
 
-        _currentEntity.HackingExit();
-        _currentEntity = _nextEntity;
-        _currentEntity.HackingEnter(this);
-        DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, _currentEntity._moveData.camFov, 1f);
+        currentEntity.HackingExit();
+        currentEntity = newEntity;
+        currentEntity.HackingEnter(this);
+        DOTween.To(() => VirtualCamera.m_Lens.OrthographicSize, x => VirtualCamera.m_Lens.OrthographicSize = x, currentEntity._moveData.camFov, 1f);
         _nextEntity = null;
 
-        VirtualCamera.Follow = _currentEntity.transform;
+        VirtualCamera.Follow = currentEntity.transform;
         OnHackingEvent?.Invoke();
     }
 
@@ -146,10 +147,10 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (_currentEntity != null)
+        if (currentEntity != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(_currentEntity.transform.position, canHackingDistance);
+            Gizmos.DrawWireSphere(currentEntity.transform.position, canHackingDistance);
             Gizmos.color = Color.white;
         }
     }

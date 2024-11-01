@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Work/Lch/00Secen/MenuScean.unity
     guid: 617a898520e336c4eaa8ba4c17ffb180
   - enabled: 1
-    path: Assets/Work/Lch/00Secen/PP.unity
-    guid: 1e83aeb3c9db2764580ff1a784fab99c
+    path: Assets/Scenes/KimMin.unity
+    guid: 8fae671e3a12e784a9c3b48b1ebe91d2
   m_configObjects: {}

@@ -11,6 +11,7 @@ public class Elephant : Entity
     {
         _player = player;
         _canMove = true;
+        OnHackingEnterEvent?.Invoke();
     }
 
     protected override void Move(Vector2 dir)
@@ -58,6 +59,7 @@ public class Elephant : Entity
     public override void HackingExit()
     {
         _canMove = false;
+        OnHackingEnterEvent?.Invoke();
         _player = null;
     }
 }

@@ -39,6 +39,7 @@ public class Spider : Entity
         _player = player;
         _canMove = true;
         _player.InputComp.OnSkillEvent += HandleFierEvent;
+        OnHackingEnterEvent?.Invoke();
     }
 
     private void HandleFierEvent()
@@ -127,6 +128,7 @@ public class Spider : Entity
     {
         _canMove = false;
         _player.InputComp.OnSkillEvent -= HandleFierEvent;
+        OnHackingEnterEvent?.Invoke();
     }
 
     private void OnDrawGizmosSelected()

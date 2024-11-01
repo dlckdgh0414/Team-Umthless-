@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Entity : MonoBehaviour, IHackingEnter, IHackingExit
 {
     protected Dictionary<Type, IEntityComponent> _components;
 
     public Rigidbody2D RigidCompo { get; protected set; }
+    public UnityEvent OnHackingEnterEvent;
+    public UnityEvent OnHackingExitEvent;
     protected AnimalsAnim AnimCompo;
     protected Player _player;
 

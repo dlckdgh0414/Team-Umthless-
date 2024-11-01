@@ -27,6 +27,7 @@ public class Lizard : Entity
     public override void HackingEnter(Player player)
     {
         _player = player;
+        OnHackingEnterEvent?.Invoke();
         _player.InputComp.OnSkillEvent += HandleWallRunEvent;
         _player.InputComp.OnJumpEvent += Jump;
         _canMove = true;
@@ -119,6 +120,7 @@ public class Lizard : Entity
     public override void HackingExit()
     {
         _canMove = false;
+        OnHackingEnterEvent?.Invoke();
         _player.InputComp.OnSkillEvent -= HandleWallRunEvent;
         _player.InputComp.OnJumpEvent -= Jump;
         _player = null;

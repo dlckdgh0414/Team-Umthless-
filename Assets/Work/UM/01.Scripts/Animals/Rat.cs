@@ -6,6 +6,7 @@ public class Rat : Entity
     public override void HackingEnter(Player player)
     {
         _player = player;
+        OnHackingEnterEvent?.Invoke();
         _canMove = true;
     }
 
@@ -24,6 +25,7 @@ public class Rat : Entity
 
     public override void HackingExit()
     {
+        OnHackingEnterEvent?.Invoke();
         _player = null;
         _canMove = false;
     }

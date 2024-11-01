@@ -22,6 +22,7 @@ public class Rabit : Entity
     {
         _player = player;
         _player.InputComp.OnJumpChargingEvent += Jump;
+        OnHackingEnterEvent?.Invoke();
         _canMove = true;
     }
 
@@ -76,6 +77,7 @@ public class Rabit : Entity
     public override void HackingExit()
     {
         _player.InputComp.OnJumpChargingEvent -= Jump;
+        OnHackingEnterEvent?.Invoke();
         _player = null;
         
         _canMove = false;

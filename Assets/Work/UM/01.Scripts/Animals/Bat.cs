@@ -22,6 +22,7 @@ public class Bat : Entity
     {
         _player = player;
         _player.InputComp.OnJumpChargingEvent += Fly;
+        OnHackingEnterEvent?.Invoke();
         _canMove = true;
     }
 
@@ -62,6 +63,7 @@ public class Bat : Entity
     {
         _canMove = false;
         _player.InputComp.OnJumpChargingEvent -= Fly;
+        OnHackingEnterEvent?.Invoke();
         _player = null;
     }
 

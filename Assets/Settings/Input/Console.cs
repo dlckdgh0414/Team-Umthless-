@@ -62,6 +62,15 @@ public partial class @Console: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Respawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""83a31432-e65e-46f4-9bdd-d0b46ed22f47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @Console: IInputActionCollection2, IDisposable
                     ""action"": ""Hacking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29d01ab1-236a-4479-abdd-1ebf2d0579ce"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
         m_PlayerInput_Jump = m_PlayerInput.FindAction("Jump", throwIfNotFound: true);
         m_PlayerInput_Skill = m_PlayerInput.FindAction("Skill", throwIfNotFound: true);
         m_PlayerInput_Hacking = m_PlayerInput.FindAction("Hacking", throwIfNotFound: true);
+        m_PlayerInput_Respawn = m_PlayerInput.FindAction("Respawn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_Jump;
     private readonly InputAction m_PlayerInput_Skill;
     private readonly InputAction m_PlayerInput_Hacking;
+    private readonly InputAction m_PlayerInput_Respawn;
     public struct PlayerInputActions
     {
         private @Console m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @Console: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerInput_Jump;
         public InputAction @Skill => m_Wrapper.m_PlayerInput_Skill;
         public InputAction @Hacking => m_Wrapper.m_PlayerInput_Hacking;
+        public InputAction @Respawn => m_Wrapper.m_PlayerInput_Respawn;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ public partial class @Console: IInputActionCollection2, IDisposable
             @Hacking.started += instance.OnHacking;
             @Hacking.performed += instance.OnHacking;
             @Hacking.canceled += instance.OnHacking;
+            @Respawn.started += instance.OnRespawn;
+            @Respawn.performed += instance.OnRespawn;
+            @Respawn.canceled += instance.OnRespawn;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -274,6 +300,9 @@ public partial class @Console: IInputActionCollection2, IDisposable
             @Hacking.started -= instance.OnHacking;
             @Hacking.performed -= instance.OnHacking;
             @Hacking.canceled -= instance.OnHacking;
+            @Respawn.started -= instance.OnRespawn;
+            @Respawn.performed -= instance.OnRespawn;
+            @Respawn.canceled -= instance.OnRespawn;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -297,5 +326,6 @@ public partial class @Console: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
         void OnHacking(InputAction.CallbackContext context);
+        void OnRespawn(InputAction.CallbackContext context);
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7420770993666273707}
   - component: {fileID: 8118296761732753778}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3705438872096747875}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FirPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4675615560229719628}
   - component: {fileID: 4345494126225644841}
   - component: {fileID: 4611248299559203384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f8c2fe8d5e64c3f4ea076b4afb548c9e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -189,7 +189,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!231 &4675615560229719628
 SpringJoint2D:
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 1785375001840513042}
   - component: {fileID: 1871767753972831237}
   - component: {fileID: 4761811757991015072}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2189152563913789230}
   - component: {fileID: 1335654618291979221}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Buillet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

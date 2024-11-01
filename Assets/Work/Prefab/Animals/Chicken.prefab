@@ -182,6 +182,7 @@ MonoBehaviour:
   _canMove: 0
   _moveData: {fileID: 11400000, guid: 39c051dbdff489c49abd9247ff5a55ce, type: 2}
   _moveType: {fileID: 11400000, guid: 182a836be4d66244299bae2c1c27d726, type: 2}
+  _a: 0
 --- !u!70 &8299291750752120377
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -242,5 +243,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4

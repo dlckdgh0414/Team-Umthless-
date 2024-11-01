@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 637486810936414055}
   - component: {fileID: 2238758163761301566}
   - component: {fileID: 1053526821290631180}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 7161187280245254550}
   - component: {fileID: 6906139636918790414}
   - component: {fileID: 4425560868175758027}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Rhino
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f8c2fe8d5e64c3f4ea076b4afb548c9e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -193,7 +193,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6906139636918790414
 BoxCollider2D:
@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4567861467745650093}
   - component: {fileID: 2166229556796373007}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

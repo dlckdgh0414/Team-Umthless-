@@ -3,6 +3,7 @@ using UnityEngine;
 public class Chicken : Entity
 {
     [SerializeField] private AnimTypeSO _moveType;
+    [SerializeField] private float _a;
 
     public override void HackingEnter(Player player)
     {
@@ -29,7 +30,7 @@ public class Chicken : Entity
 
     protected override void Move(Vector2 dir)
     {
-        RigidCompo.velocity = new Vector2(dir.x * _moveData.moveSpeed, 0);
+        RigidCompo.velocity = new Vector2(dir.x * _moveData.moveSpeed, _a);
         _renderer.FlipController(dir.x);
     }
 

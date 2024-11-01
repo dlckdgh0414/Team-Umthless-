@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3741251617313786946}
   - component: {fileID: 8620820123544565598}
   - component: {fileID: 6893100616213728214}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rabit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f8c2fe8d5e64c3f4ea076b4afb548c9e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -106,7 +106,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &6893100616213728214
 MonoBehaviour:
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6911844349135471209}
   - component: {fileID: 7925921647432443969}
   - component: {fileID: 4165539133167266591}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 1413810134489077193, guid: bf52cefa603a55e41aee4a7519a7c558, type: 3}
       propertyPath: m_Name
       value: GroundCheck
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413810134489077193, guid: bf52cefa603a55e41aee4a7519a7c558, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8073419547679678049, guid: bf52cefa603a55e41aee4a7519a7c558, type: 3}
       propertyPath: _size.y

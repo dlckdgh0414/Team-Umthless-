@@ -38,8 +38,8 @@ public class Lizard : Entity
         {
             if (_wallCheck.IsWallCheck())
             {
-                int wallDir = _wallCheck.isRightWall ? 90 : -90;
-                _isWallRight = _wallCheck.isRightWall;
+                int wallDir = Mathf.Sign(_renderer.FacingDirection) > 0  ? 90 : -90;
+                _isWallRight = Mathf.Sign(_renderer.FacingDirection) > 0;
                 
                 RigidCompo.AddForce(new Vector2(Mathf.Sign(wallDir),1) * lizardToWallJump, ForceMode2D.Impulse);
                 transform.eulerAngles = new Vector3(0, 0, wallDir);

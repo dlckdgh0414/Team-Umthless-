@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TextTrigger : MonoBehaviour
 {
 	private MainUI _textBoxOn;
     private BoxCollider2D _boxCollider;
+    public UnityEvent OnShowText;
+    public UnityEvent OnCloseText;
 
     private void Awake()
     {
@@ -15,16 +18,16 @@ public class TextTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Animals"))
-         _textBoxOn.isTextTrigger = true;
+        if(collision.gameObject.CompareTag("Animal"))
+        OnShowText?.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Anmals"))
+        if (collision.gameObject.CompareTag("Animal"))
         {
             _boxCollider.gameObject.SetActive(false);
-            _textBoxOn.isTextTrigger = false;
+            OnCloseText?.Invoke();
         }
     }
 }

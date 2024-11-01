@@ -3,29 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MainUI : MonoBehaviour
 {
-	[SerializeField] private Image _image;
+    [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _tmp;
     [SerializeField] private TextListSO _list;
-    private int count = 0;
-    public bool isTextTrigger;
+    private int Count = 0;
+    public bool isTextTrigger = false;
 
     private void Start()
     {
         _image.gameObject.SetActive(false);
     }
 
-    private void Update()
+    public void ShowBox()
     {
-        if (isTextTrigger)
+        if (!isTextTrigger) 
         {
             _image.gameObject.SetActive(true);
-            DOText.DOTexting(_list._textList[count].Text, _tmp, 2,DG.Tweening.Ease.Linear, ()=>count++);
+            StartCoroutine(TextShow());
         }
-        else if (!isTextTrigger)
+    }
+
+    private IEnumerator TextShow()
+    {
+        isTextTrigger = true; 
+        _tmp.text = "";
+
+        string currentText = _list._textList[Count].Text;
+
+        if(currentText.Length > 20)
         {
-            _image.gameObject.SetActive(false);        }
+            _tmp.alignment = TextAlignmentOptions.Midline;
+        }
+
+        for (int i = 0; i < currentText.Length; i++)
+        {
+         
+                _tmp.text += currentText[i];
+            yield return new WaitForSeconds(0.02f); 
+        }
+    }
+
+    public void CloseShow()
+    {
+        _image.gameObject.SetActive(false);
+        Count++;
+        isTextTrigger = false;
     }
 }

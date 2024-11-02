@@ -45,15 +45,6 @@ public class Rabit : Entity
             ChargingJump();
         }
 
-        if (RigidCompo.velocity.x != 0)
-        {
-            AnimCompo.SetParam(_moveType, true);
-        }
-        else
-        {
-            AnimCompo.SetParam(_moveType, false);
-        }
-
         if (_isCharging)
         {
             jumpPower += Time.deltaTime * _jumpChraging;

@@ -144,9 +144,9 @@ GameObject:
   - component: {fileID: 2214622993719047602}
   - component: {fileID: 6518766229196164601}
   - component: {fileID: 4047000874156872648}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ape
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,6 +166,8 @@ Transform:
   m_Children:
   - {fileID: 7795918394055555748}
   - {fileID: 6475693496234720636}
+  - {fileID: 4672511753981922538}
+  - {fileID: 3017431074517305817}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2214622993719047602
@@ -252,6 +254,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c8200868282ab48842bab79e9170f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHackingEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7357899867442031266}
+        m_TargetAssemblyTypeName: EffectFeedback, Assembly-CSharp
+        m_MethodName: PlayFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHackingExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7135636325568328068}
+        m_TargetAssemblyTypeName: EffectFeedback, Assembly-CSharp
+        m_MethodName: PlayFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _canMove: 0
   _moveData: {fileID: 11400000, guid: a1614f1c4b087764fa3a562b17524585, type: 2}
   OnHoldingEvent:
@@ -293,6 +325,53 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   isHold: 0
+--- !u!1 &3932310833613462408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3017431074517305817}
+  - component: {fileID: 7357899867442031266}
+  m_Layer: 0
+  m_Name: DownParticleFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3017431074517305817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3932310833613462408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4949825576959844798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7357899867442031266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3932310833613462408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f043b7867d4f9be429c30433bc17908a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolManager: {fileID: 11400000, guid: d37261864854dfa41af86456b43594a7, type: 2}
+  _effectType: {fileID: 11400000, guid: 1f7dcda340297be47ba29c1029efd78e, type: 2}
+  _particleSize: {x: 1, y: 2}
 --- !u!1 &4778264166266721612
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,3 +403,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4949825576959844798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8699088715535098959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4672511753981922538}
+  - component: {fileID: 7135636325568328068}
+  m_Layer: 0
+  m_Name: UpParticleFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4672511753981922538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8699088715535098959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4949825576959844798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7135636325568328068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8699088715535098959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f043b7867d4f9be429c30433bc17908a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolManager: {fileID: 11400000, guid: d37261864854dfa41af86456b43594a7, type: 2}
+  _effectType: {fileID: 11400000, guid: 76aa4ffc3c1e55c4bb8ebb85e51097ca, type: 2}
+  _particleSize: {x: 1, y: 2}

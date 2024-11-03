@@ -8,6 +8,7 @@ public class Chicken : Entity
     public override void HackingEnter(Player player)
     {
         _player = player;
+        OnHackingEnterEvent?.Invoke();
         _canMove = true;
     }
 
@@ -37,6 +38,7 @@ public class Chicken : Entity
     public override void HackingExit()
     {
         _player = null;
+        OnHackingEnterEvent?.Invoke();
         _canMove = false;
     }
 }

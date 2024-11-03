@@ -26,6 +26,7 @@ public class APE : Entity
     {
         _player = player;
         _player.InputComp.OnSkillEvent += HoldObj;
+        OnHackingEnterEvent?.Invoke();
         _canMove = true;
     }
 
@@ -80,6 +81,7 @@ public class APE : Entity
     {
         _player = null;
         _player.InputComp.OnSkillEvent -= HoldObj;
+        OnHackingExitEvent?.Invoke();
         _canMove = false;
     }
 

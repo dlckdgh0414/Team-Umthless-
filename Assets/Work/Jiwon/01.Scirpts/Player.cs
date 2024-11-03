@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("HackingSetting")]
     public float maxHackingCharge;
+    [SerializeField] private LayerMask whatIsTarget;
     public UnityEvent OnHackingEvent;
     public NotifyValue<float> _hackingCharging;
     public float canHackingDistance;
@@ -58,7 +59,7 @@ public class Player : MonoBehaviour
     {
         if (isHacking)
         {
-            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward);
+            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward, Mathf.Infinity, whatIsTarget);
 
             if (!hit) return;
 
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
         if (_isHacking)
         {
             _hackingCharging.Value += Time.deltaTime;
-            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward);
+            RaycastHit2D hit = Physics2D.Raycast(GetMousePos(), Vector3.forward, Mathf.Infinity, whatIsTarget);
             if (!hit)
             {
                 _isHacking = false;
@@ -103,7 +104,6 @@ public class Player : MonoBehaviour
                 hackingUI.HackingCansle();
                 return;
             }
-
             if (!hit.collider.TryGetComponent(out Entity entity))
             {
                 _isHacking = false;

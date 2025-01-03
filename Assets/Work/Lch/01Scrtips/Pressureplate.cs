@@ -1,0 +1,33 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Pressureplate : MonoBehaviour
+{
+    public UnityEvent OnPressEvent;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = transform.parent.GetComponent<Animator>();
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Animal"))
+        {
+            PressPlate();
+        }
+    }
+
+    private void PressPlate()
+    {
+        OnPressEvent?.Invoke();
+        _animator.SetBool("IsPressed", true);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        OnPressEvent.RemoveAllListeners();
+        _animator.SetBool("IsPressed", false);
+    }
+}

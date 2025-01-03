@@ -1,0 +1,29 @@
+using GGMPool;
+using UnityEngine;
+
+public class EffectFeedback : Feedback
+{
+    [SerializeField] private PoolManagerSO _poolManager;
+    [SerializeField] private PoolTypeSO _effectType;
+    [SerializeField] private Vector2 _particleSize;
+
+    public override void PlayFeedback()
+    {
+        var effect = _poolManager.Pop(_effectType) as EffectPlay;
+        effect.EffectPlayer(transform.position, transform.rotation);
+
+        var shape = effect.GetComponent<ParticleSystem>().shape;
+        shape.scale = _particleSize;
+    }
+
+    public override void StopFeedback()
+    {
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, _particleSize);
+    }
+}
